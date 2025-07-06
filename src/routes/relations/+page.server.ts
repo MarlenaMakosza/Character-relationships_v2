@@ -1,9 +1,9 @@
-import type { Relationships } from '$lib/class/Relationships';
+import type { Relationships } from '$lib/domain/Relationships';
 import type { IRelation } from '$lib/interfaces/interfaces';
 
 import { EMPTY } from '$lib/constants';
 import { RelationshipFormatter } from '$lib/formattters/RelationshipFormatter';
-import { RelationRepository } from '$lib/server/repositories/RelationRepository';
+import { RelationRepository } from '$lib/repositories/RelationRepository';
 import { error } from '@sveltejs/kit';
 // TODO: check what error should I use
 import { StatusCodes } from 'http-status-codes';

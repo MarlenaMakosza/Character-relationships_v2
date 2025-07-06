@@ -1,5 +1,5 @@
-import type { Character } from '$lib/class/Character';
-import type { Relationship } from '$lib/class/Relationship';
+import type { Character } from '$lib/domain/Character';
+import type { Relationship } from '$lib/domain/Relationship';
 
 export class Formatter {
 	public constructor(
@@ -7,9 +7,9 @@ export class Formatter {
 		public readonly Relation: readonly Relationship[],
 	) {}
 	// TODO - responsible for one thing, and does it well
-	// return to the goal - why did you create this class? Glueing strings for graphviz
+	// return to the goal - why did you create this domain? Glueing strings for graphviz
 	// so why are you getting here?
-	// Separate class for extracting information for this? - Yes
+	// Separate domain for extracting information for this? - Yes
 	// Or maybe you don't need a formatter and it's enough in the view - it already was like that
 
 	// function getRelationsForCharacter(characterId: number): TRelation[] {

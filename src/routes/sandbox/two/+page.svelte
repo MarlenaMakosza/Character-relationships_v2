@@ -1,5 +1,5 @@
 <!--<script lang="ts">-->
-<!--	import type { Characters } from '$lib/class/Characters';-->
+<!--	import type { Characters } from '$lib/domain/Characters';-->
 
 <!--	export let characters;-->
 <!--	console.log('Characters on the frontend:', characters); // Check if this receives data-->

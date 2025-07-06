@@ -1,10 +1,10 @@
 import type { ICharacter } from '$lib/interfaces/interfaces';
 import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
-import { Character } from '$lib/class/Character';
-import { Characters } from '$lib/class/Characters';
-import { Relationship } from '$lib/class/Relationship';
-import { Relationships } from '$lib/class/Relationships';
+import { Character } from '$lib/domain/Character';
+import { Characters } from '$lib/domain/Characters';
+import { Relationship } from '$lib/domain/Relationship';
+import { Relationships } from '$lib/domain/Relationships';
 import { db } from '$lib/server/db';
 import { characters, relations } from '$lib/server/db/schema/schema';
 import { eq } from 'drizzle-orm';

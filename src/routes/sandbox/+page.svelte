@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '$lib/scripts/app.css';
-	import type { Character } from '$lib/class/Character';
+	import type { Character } from '$lib/domain/Character';
 
 	export let data: { characters: Character[] };
 	let characters = data.characters;

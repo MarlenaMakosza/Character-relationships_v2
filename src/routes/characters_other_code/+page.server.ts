@@ -1,7 +1,7 @@
-import type { Characters } from '$lib/class/Characters';
+import type { Characters } from '$lib/domain/Characters';
 
 import { EMPTY } from '$lib/constants';
-import CharacterRepository from '$lib/server/repositories/CharacterRepository';
+import CharacterRepository from '$lib/repositories/CharacterRepository';
 import { error } from '@sveltejs/kit';
 import { StatusCodes } from 'http-status-codes';
 

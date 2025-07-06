@@ -1,4 +1,4 @@
-import type { Character } from '../class/Character';
+import type { Character } from '$lib/domain/Character';
 
 export class CharacterFormatter {
 	public static toPOJO(character: Character): {

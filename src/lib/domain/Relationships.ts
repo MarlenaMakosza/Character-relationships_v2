@@ -1,4 +1,4 @@
-import type { Relationship } from '$lib/class/Relationship';
+import type { Relationship } from '$lib/domain/Relationship';
 
 export class Relationships {
 	public relationsArray: Relationship[];

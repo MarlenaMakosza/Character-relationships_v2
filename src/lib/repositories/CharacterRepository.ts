@@ -1,5 +1,5 @@
-import { Character } from '$lib/class/Character';
-import { Characters } from '$lib/class/Characters';
+import { Character } from '$lib/domain/Character';
+import { Characters } from '$lib/domain/Characters';
 import db from '$lib/server/db';
 import { characters } from '$lib/server/db/schema/schema';
 import { eq } from 'drizzle-orm';

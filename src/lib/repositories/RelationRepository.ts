@@ -1,5 +1,5 @@
-import { Relationship } from '$lib/class/Relationship';
-import { Relationships } from '$lib/class/Relationships';
+import { Relationship } from '$lib/domain/Relationship';
+import { Relationships } from '$lib/domain/Relationships';
 import db from '$lib/server/db';
 import { relations } from '$lib/server/db/schema/schema';
 import { eq } from 'drizzle-orm';
