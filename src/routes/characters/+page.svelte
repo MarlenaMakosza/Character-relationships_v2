@@ -45,6 +45,7 @@
 				<th>ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
+				<th>Age</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -54,6 +55,7 @@
 					<td>{character.id}</td>
 					<td>{character.firstName}</td>
 					<td>{character.lastName}</td>
+					<td>{character.age}</td>
 					<td>
 						<button
 							type="button"

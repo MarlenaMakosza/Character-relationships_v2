@@ -1,9 +1,10 @@
-import { pgTable, serial, text } from 'drizzle-orm/pg-core';
+import { numeric, pgTable, serial, text } from 'drizzle-orm/pg-core';
 
 export const characters = pgTable('characters', {
 	id: serial('id').primaryKey(),
 	firstName: text('first_name').notNull(),
 	lastName: text('last_name').notNull(),
+	age: numeric('age').notNull(),
 });
 
 export const relations = pgTable('relations', {

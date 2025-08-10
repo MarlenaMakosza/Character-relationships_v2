@@ -8,6 +8,7 @@ export const POST: RequestHandler = async ({ request }: { request: Request }) =>
 	const formData = await request.formData();
 	const firstName = formData.get('firstName');
 	const lastName = formData.get('lastName');
+	const age = formData.get('age');
 
 	if (typeof firstName !== 'string' || typeof lastName !== 'string') {
 		throw new TypeError('Invalid form data');
@@ -21,6 +22,7 @@ export const POST: RequestHandler = async ({ request }: { request: Request }) =>
 	await db.insert(characters).values({
 		firstName,
 		lastName,
+		age,
 	});
 
 	return new Response('Character added successfully', { status: 200 });

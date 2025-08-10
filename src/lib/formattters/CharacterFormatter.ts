@@ -5,6 +5,7 @@ export class CharacterFormatter {
 		id: number;
 		firstName: string;
 		lastName: string;
+		age: string;
 	} {
 		return {
 			// V2 - doesn't work correct
@@ -13,6 +14,7 @@ export class CharacterFormatter {
 			id: character.id,
 			firstName: character.firstName,
 			lastName: character.lastName,
+			age: character.age,
 		};
 	}
 
@@ -20,6 +22,7 @@ export class CharacterFormatter {
 		id: number;
 		firstName: string;
 		lastName: string;
+		age: string;
 	}> {
 		return characters.map(character => this.toPOJO(character));
 	}
