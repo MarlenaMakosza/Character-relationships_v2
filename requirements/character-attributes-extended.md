@@ -1,218 +1,142 @@
 # Szczegóły Postaci - Atrybuty i Pola
 
-## Podstawowe dane (inspiracja: Gramps Person)
+## Podstawowe dane
 
-### Primary Name (główne imię/nazwisko)
+### Struktura nazw - wszystko w jednej liście
 
-Struktura elastyczna obsługująca różne kultury i konwencje nazewnictwa.
+Wszystkie nazwy, imiona, nazwiska, tytuły, przezwiska przechowywane są w jednej elastycznej liście `names[]`.
 
-#### Given Names (array)
-
-- Lista imion postaci (może być jedno lub wiele)
-- Przykłady:
-  - `["Daenerys"]`
-  - `["Jan", "Paweł"]` (polskie drugie imię)
-  - `["John", "Robert", "Michael"]` (western middle names)
-
-#### Surnames (array)
-
-- Lista nazwisk (obsługa kultur z wieloma nazwiskami)
-- Przykłady:
-  - `["Targaryen"]`
-  - `["García", "López"]` (hiszpańskie nazwiska ojca i matki)
-  - `["von Habsburg"]`
-
-#### Suffix Genealogical (string, single)
-
-- Przyrostek genealogiczny: Jr., Sr., II, III, IV
-- **Tylko jeden** - rzadko ktoś ma więcej niż jeden suffix genealogiczny
-
-#### Titles (array of objects)
-
-Wszystkie tytuły: formalne, akademickie, zawodowe, szlacheckie.
-
-**Struktura obiektu Title:**
+**Struktura pojedynczego wpisu:**
 
 ```json
 {
-  "label": "Queen of the Andals and the First Men",
-  "category": "noble",
-  "source": "conquest",
-  "culture": "Westerosi",
-  "locale": "en-US",
-  "priority": 1,
-  "period": { "from": "298-AC", "to": null },
-  "is_active": true
+  "name": "Jan",
+  "role": "given_name",
+  "origin": "",
+  "display_priority": 10
 }
 ```
 
 **Pola:**
+- `name` (string, required) - jak brzmi nazwa/tytuł/przezwisko/imię
+- `role` (string, optional) - rola/typ tej nazwy (wolny tekst)
+- `origin` (string, optional) - geneza, skąd się wzięło, kto używa
+- `display_priority` (number, optional) - kolejność wyświetlania (niższy = wcześniej)
 
-- `label` (string, required) - treść tytułu
-- `category` (enum, required) - kategoria tytułu:
-  - `noble` - szlachecki (Queen, King, Lord, Duke)
-  - `office` - urząd (Chancellor, Minister)
-  - `military_rank` - ranga wojskowa (General, Captain)
-  - `honorific_prefix` - honoryfikat przed nazwiskiem (Dr., Sir, Rev.)
-  - `degree_postnominal` - stopień po nazwisku (PhD, MD, Esq.)
-  - `religious` - religijny (Pope, Archbishop, Rabbi)
-  - `magical` - magiczny (Archmage, High Priest - dla fantasy)
-  - `other` - inne
-- `source` (string, optional) - skąd/kto nadał tytuł
-- `culture` (string, optional) - kultura/język (np. "Dothraki", "Westerosi")
-- `locale` (string, optional) - kod języka BCP 47 (np. "en-US", "pl-PL")
-- `priority` (number, optional) - priorytet wyświetlania (1 = najważniejszy)
-- `period` (object, optional) - przedział czasowy:
-  - `from` (date/string) - od kiedy
-  - `to` (date/string) - do kiedy (null = aktualnie)
-- `is_active` (boolean, optional) - czy aktywny (auto-compute z period lub manual)
+### UI Aliasy (convenience fields)
 
-**Przykłady:**
+Frontend wyświetla dedykowane pola, które mapują się na wpisy w `names[]`:
 
-```json
-[
-  { "label": "Queen of the Andals", "category": "noble", "priority": 1 },
-  { "label": "Dr.", "category": "honorific_prefix", "source": "academic" },
-  { "label": "PhD", "category": "degree_postnominal", "source": "academic" },
-  { "label": "Lord Commander", "category": "military_rank", "source": "Night's Watch" }
-]
+**Podstawowe pola UI:**
+- **Imię** → `{ role: "given_name", display_priority: 10 }`
+- **Drugie imię** → `{ role: "second_name", display_priority: 11 }`
+- **Nazwisko** → `{ role: "surname", display_priority: 20 }`
+
+Wszystkie `second_name` mają ten sam priority (11), wyświetlają się po `given_name` ale przed `surname`.
+
+**Dodatkowe pola (opcjonalne):**
+- **[+ Dodaj nazwę/tytuł]** → użytkownik wybiera/wpisuje `role`, auto-przypisywany `display_priority`
+
+### Enum NameRole z automatycznymi priorytetami
+
+Backend i Frontend używają enuma dla `role` z przypisanymi priorytetami:
+
+```typescript
+enum NameRole {
+  HONORIFIC_PREFIX = 'honorific_prefix',
+  GIVEN_NAME = 'given_name',
+  SECOND_NAME = 'second_name',
+  SURNAME = 'surname',
+  SUFFIX = 'suffix',
+  TITLE = 'title',
+  EPITHET = 'epithet',
+  NICKNAME = 'nickname',
+  FORM_OF_ADDRESS = 'form_of_address',
+  ALIAS = 'alias',
+  OTHER = 'other'
+}
+
+// Priorytety przypisane do każdej roli
+const ROLE_PRIORITY: Record<NameRole, number> = {
+  [NameRole.HONORIFIC_PREFIX]: 5,     // Dr., Sir, Rev. - PRZED imieniem
+  [NameRole.GIVEN_NAME]: 10,          // Pierwsze imię
+  [NameRole.SECOND_NAME]: 11,         // Drugie/kolejne imiona (wszystkie mają 11)
+  [NameRole.SURNAME]: 20,             // Nazwisko
+  [NameRole.SUFFIX]: 25,              // Jr., III, Sr. - po nazwisku
+  [NameRole.TITLE]: 30,               // Tytuły oficjalne (Queen of..., Lord)
+  [NameRole.EPITHET]: 40,             // Przydomki (Stormborn, The Great)
+  [NameRole.NICKNAME]: 50,            // Przezwiska (Dany)
+  [NameRole.FORM_OF_ADDRESS]: 60,     // Formy adresatywne (Your Grace)
+  [NameRole.ALIAS]: 70,               // Pseudonimy, fałszywe tożsamości
+  [NameRole.OTHER]: 99                // Inne
+};
 ```
 
-#### Nicknames (array of objects)
+**W UI użytkownik:**
+- Wybiera `role` z dropdown (wartości z enuma)
+- LUB wpisuje custom text (wtedy `role` = wolny tekst, `display_priority` = 99 lub manual)
+- Może ręcznie zmienić `display_priority` (drag & drop w UI)
 
-Wszystkie przezwiska, przydomki, formy adresatywne - jeden zunifikowany array z kontekstem.
-
-**Struktura obiektu Nickname:**
-
-```json
-{
-  "name": "Dany",
-  "context": "friends_family",
-  "type": "diminutive",
-  "source": "family",
-  "culture": null,
-  "locale": "en-US",
-  "priority": 1,
-  "period": { "from": null, "to": null },
-  "is_active": true
+**Automatyczne przypisanie priorytetu:**
+```typescript
+function getDefaultPriority(role: string): number {
+  return ROLE_PRIORITY[role as NameRole] ?? 99;  // 99 dla custom roles
 }
 ```
 
-**Pola:**
+### Renderowanie pełnego imienia
 
-- `name` (string, required) - przezwisko/przydomek
-- `context` (enum, required) - kontekst użycia:
-  - `friends_family` - przyjaciele i rodzina
-  - `subjects` - poddani, podwładni
-  - `ethno_culture` - specyficzne dla kultury/etniczności
-  - `epithet` - epitety (Stormborn, The Great)
-  - `family_specific` - używane przez konkretną osobę z rodziny
-  - `military_unit` - w jednostce wojskowej
-  - `organization` - w organizacji/gildii
-  - `enemies` - jak nazywają go wrogowie
-  - `other` - inne
-- `type` (string, optional) - typ przezwiska:
-  - `diminutive` - zdrobnienie (Dany)
-  - `form_of_address` - forma adresatywna (Your Grace, Sire)
-  - `title_epithet` - tytuł używany jako przydomek (Khaleesi)
-  - `epithet_birth` - epitety od urodzenia (Stormborn)
-  - `epithet_deed` - epitety od czynów (Breaker of Chains)
-  - `epithet_appearance` - od wyglądu (The Red, Goldeneye)
-  - `slang` - slangowe
-  - `insult` - obelgi
-  - `other` - inne
-- `source` (string, optional) - kto nadał/używa (np. "brother", "Khal Drogo", "enemies")
-- `culture` (string, optional) - kultura (np. "Dothraki", "Westerosi")
-- `locale` (string, optional) - język
-- `priority` (number, optional) - priorytet (który pokazać jako główny)
-- `period` (object, optional) - kiedy używane
-- `is_active` (boolean, optional) - czy aktywne
+**Sortowanie:** `names.sort((a, b) => a.display_priority - b.display_priority)`
 
-**Przykłady:**
-
-```json
-[
-  {
-    "name": "Dany",
-    "context": "friends_family",
-    "type": "diminutive",
-    "source": "family",
-    "priority": 1
-  },
-  {
-    "name": "Your Grace",
-    "context": "subjects",
-    "type": "form_of_address",
-    "source": "protocol"
-  },
-  {
-    "name": "Khaleesi",
-    "context": "ethno_culture",
-    "type": "title_epithet",
-    "source": "Khal Drogo",
-    "culture": "Dothraki"
-  },
-  {
-    "name": "Stormborn",
-    "context": "epithet",
-    "type": "epithet_birth",
-    "source": "birth_circumstance"
-  },
-  {
-    "name": "Mother of Dragons",
-    "context": "epithet",
-    "type": "epithet_deed",
-    "period": { "from": "299-AC", "to": null }
-  }
-]
-```
-
-#### Styles (object, optional)
-
-Szablony renderowania imienia w różnych kontekstach.
-
-**Struktura:**
+**Przykład:**
 
 ```json
 {
-  "primary": "{given} {surname}",
-  "alternates": [
-    {
-      "id": "formal_realm",
-      "template": "{title:noble[priority=1]} {given} {surname}",
-      "audience": "subjects",
-      "locale": "en-US"
-    },
-    {
-      "id": "academic",
-      "template": "{title:honorific_prefix} {given} {surname}, {title:degree_postnominal}",
-      "audience": "academic"
-    },
-    {
-      "id": "full_titles",
-      "template": "{given} {surname}, {titles:all}",
-      "audience": "ceremonial"
-    }
+  "id": "char_001",
+  "names": [
+    { "name": "Dr.", "role": "honorific_prefix", "origin": "Academic degree", "display_priority": 5 },
+    { "name": "Jan", "role": "given_name", "origin": "", "display_priority": 10 },
+    { "name": "Paweł", "role": "second_name", "origin": "Second name", "display_priority": 11 },
+    { "name": "Maria", "role": "second_name", "origin": "Confirmation name", "display_priority": 11 },
+    { "name": "Kowalski", "role": "surname", "origin": "", "display_priority": 20 },
+    { "name": "Jr.", "role": "suffix", "origin": "Junior", "display_priority": 25 },
+    { "name": "King of Poland", "role": "title", "origin": "Coronation 2020", "display_priority": 30 },
+    { "name": "Stormborn", "role": "epithet", "origin": "Born during a storm", "display_priority": 40 }
   ]
 }
 ```
 
-**Tokeny w templates:**
+**Wyświetlenie:**
+```
+Dr. Jan Paweł Maria Kowalski Jr., King of Poland, Stormborn
+│   │   │     │     │         │    │              │
+5   10  11    11    20        25   30             40
+```
 
-- `{given}` - pierwsze imię z given_names
-- `{given:all}` - wszystkie given_names
-- `{surname}` - pierwsze nazwisko
-- `{surname:all}` - wszystkie surnames
-- `{title:category}` - pierwszy tytuł z danej kategorii
-- `{title:category[priority=N]}` - tytuł z kategorii o priorytecie N
-- `{titles:all}` - wszystkie tytuły
-- `{nickname:context}` - nickname z danego kontekstu
+### Przykład pełnej postaci (Daenerys)
 
-### Alternate Names (array of Name objects)
+```json
+{
+  "id": "char_001",
+  "names": [
+    { "name": "Daenerys", "role": "given_name", "origin": "", "display_priority": 10 },
+    { "name": "Targaryen", "role": "surname", "origin": "", "display_priority": 20 },
+    { "name": "Stormborn", "role": "epithet", "origin": "Born during a storm on Dragonstone", "display_priority": 40 },
+    { "name": "Mother of Dragons", "role": "epithet", "origin": "Hatched three dragon eggs in Khal Drogo's funeral pyre", "display_priority": 41 },
+    { "name": "Dany", "role": "nickname", "origin": "Used by family and close friends", "display_priority": 50 },
+    { "name": "Khaleesi", "role": "title", "origin": "Wife of Khal Drogo, leader of Dothraki khalasar", "display_priority": 30 },
+    { "name": "Queen of the Andals and the First Men", "role": "title", "origin": "Conquest of Westeros, claimed by right of succession", "display_priority": 31 },
+    { "name": "Your Grace", "role": "form_of_address", "origin": "Royal protocol for addressing monarchs", "display_priority": 60 },
+    { "name": "The Unburnt", "role": "epithet", "origin": "Survived Khal Drogo's funeral pyre unharmed", "display_priority": 42 },
+    { "name": "Breaker of Chains", "role": "epithet", "origin": "Freed slaves in Slaver's Bay cities", "display_priority": 43 }
+  ]
+}
+```
 
-- Lista kompletnie alternatywnych tożsamości
-- Każda ma pełną strukturę Primary Name (given_names, surnames, titles, nicknames)
-- Przykład: postać używająca alias, fałszywej tożsamości
+**Wyświetlenie (sortowane po priority):**
+```
+Daenerys Targaryen, Khaleesi, Queen of the Andals and the First Men, Stormborn, Mother of Dragons, The Unburnt, Breaker of Chains
+```
 
 ### Inne podstawowe dane
 
