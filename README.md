@@ -58,3 +58,8 @@ Now is very simple version.
 - individual graphs relation for every character (example: Main character have relation with him, him and him)
 - family tree
 - and more (someday I will write)
+
+## About the Author
+
+If you’d like to see more of my work, feel free to visit my personal website:
+👉 [https://marlenamakosza.com](https://marlenamakosza.com)
