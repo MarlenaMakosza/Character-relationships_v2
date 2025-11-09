@@ -61,5 +61,5 @@ Now is very simple version.
 
 ## About the Author
 
-If you’d like to see more of my work, feel free to visit my personal website:
+If you’d like to see more of my work, feel free to visit my personal website:  
 👉 [https://marlenamakosza.com](https://marlenamakosza.com)
