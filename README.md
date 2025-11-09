@@ -59,7 +59,6 @@ Now is very simple version.
 - family tree
 - and more (someday I will write)
 
-## About the Author
+## 👩‍💻 Author
 
-If you’d like to see more of my work, feel free to visit my personal website:  
-👉 [https://marlenamakosza.com](https://marlenamakosza.com)
+Made by [Marlena Makosza](https://marlenamakosza.com)
