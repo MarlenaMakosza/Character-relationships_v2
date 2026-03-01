@@ -13,7 +13,7 @@ class CharacterRepository {
 		const characterRecords = await db.select().from(characters).orderBy(characters.id);
 		// mapper
 		const charactersArray = characterRecords.map(
-			(char): Character => new Character(char.id, char.firstName, char.lastName),
+			(char): Character => new Character(char.id, char.firstName, char.lastName, char.age),
 		);
 
 		return new Characters(charactersArray);

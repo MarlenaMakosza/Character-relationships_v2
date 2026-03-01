@@ -1,6 +1,7 @@
 import cspell from '@cspell/eslint-plugin';
 import js from '@eslint/js';
 import json from '@eslint/json';
+import markdown from '@eslint/markdown';
 import html from '@html-eslint/eslint-plugin';
 import htmlParser from '@html-eslint/parser';
 import panda from '@pandacss/eslint-plugin';
@@ -23,9 +24,8 @@ import svelte from 'eslint-plugin-svelte';
 import tailwind from 'eslint-plugin-tailwindcss';
 import tsDoc from 'eslint-plugin-tsdoc';
 import unicorn from 'eslint-plugin-unicorn';
-import svelteParser from 'svelte-eslint-parser';
-import markdown from "@eslint/markdown";
 import { fileURLToPath } from 'node:url';
+import svelteParser from 'svelte-eslint-parser';
 
 // IMPORTANT! If you want see what rules is in use, just run in terminal: npx @eslint/config-inspector
 // For most plugins you can check their docs via this tool
@@ -716,7 +716,7 @@ export default [
 				'@stylistic/function-call-argument-newline': ['error', 'consistent'],
 				'@stylistic/jsx-self-closing-comp': 'error',
 				'@stylistic/jsx-props-no-multi-spaces': 'error',
-				'@stylistic/newline-per-chained-call': ['error', { ignoreChainWithDepth: 3}],
+				'@stylistic/newline-per-chained-call': ['error', { ignoreChainWithDepth: 3 }],
 				'@stylistic/object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
 				'@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
 				'@stylistic/function-paren-newline': ['error', 'consistent'],
@@ -912,6 +912,7 @@ export default [
 					'error',
 					{
 						ignoreInferredTypes: true,
+						checkParameterProperties: false,
 					},
 				],
 				'@typescript-eslint/unbound-method': 'error',
@@ -1193,7 +1194,7 @@ export default [
 	{
 		name: 'HTML',
 		files: ['**/*.html'],
-		ignores: ['.svelte-kit/**', '**/fixtures', 'node_modules', 'build', 'docs/**',],
+		ignores: ['.svelte-kit/**', '**/fixtures', 'node_modules', 'build', 'docs/**'],
 		languageOptions: {
 			parser: htmlParser,
 		},
@@ -1226,7 +1227,7 @@ export default [
 	{
 		name: 'JSON',
 		files: ['**/*.json'],
-		ignores: ['package-lock.json', 'docs/**',],
+		ignores: ['package-lock.json', 'docs/**'],
 		language: 'json/json',
 		plugins: {
 			json: json,
@@ -1240,9 +1241,9 @@ export default [
 	{
 		name: 'Markdown',
 		files: ['**/*.md'],
-		language: "markdown/commonmark",
+		language: 'markdown/commonmark',
 		plugins: {
-			markdown
+			markdown,
 		},
 		rules: {
 			...(markdownFlag && {
@@ -1253,7 +1254,7 @@ export default [
 				'markdown/no-html': 'error',
 				'markdown/no-invalid-label-refs': 'error',
 				'markdown/no-missing-label-refs': 'error',
-			})
-		}
-	}
+			}),
+		},
+	},
 ];

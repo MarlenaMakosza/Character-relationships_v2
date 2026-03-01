@@ -2,6 +2,7 @@ export interface ICharacter {
 	id: number;
 	firstName: string;
 	lastName: string;
+	age: number;
 }
 export interface IRelation {
 	id: number;

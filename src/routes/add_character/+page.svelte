@@ -5,6 +5,7 @@
 
 	let firstName = '';
 	let lastName = '';
+	let age = '';
 	let errorMessage = '';
 
 	// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
@@ -20,6 +21,7 @@
 		const formData = new FormData();
 		formData.append('firstName', firstName);
 		formData.append('lastName', lastName);
+		formData.append('age', age);
 		const response = await fetch('/add_character', {
 			method: 'POST',
 			body: formData,
@@ -40,6 +42,9 @@
 
 	<label for="lastName">Last Name:</label>
 	<input id="lastName" name="lastName" type="text" bind:value={lastName} />
+
+	<label for="age">Age:</label>
+	<input id="age" name="age" type="number" bind:value={age} />
 
 	<button type="submit">Add Character</button>
 </form>

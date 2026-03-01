@@ -1,10 +1,16 @@
-import { pgTable, serial, text } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
+import { bigint, check, pgTable, serial, text } from 'drizzle-orm/pg-core';
 
-export const characters = pgTable('characters', {
-	id: serial('id').primaryKey(),
-	firstName: text('first_name').notNull(),
-	lastName: text('last_name').notNull(),
-});
+export const characters = pgTable(
+	'characters',
+	{
+		id: serial('id').primaryKey(),
+		firstName: text('first_name').notNull(),
+		lastName: text('last_name').notNull(),
+		age: bigint('age', { mode: 'number' }).notNull(),
+	},
+	table => [check('age_non_negative', sql`${table.age} >= 0`)],
+);
 
 export const relations = pgTable('relations', {
 	id: serial('id').primaryKey(),
@@ -12,49 +18,3 @@ export const relations = pgTable('relations', {
 	idChar2: serial('id_char_2').references(() => characters.id),
 	about: text('about').notNull(),
 });
-
-// import { sql } from 'drizzle-orm';
-// import { boolean, pgTable, text, uuid, varchar } from 'drizzle-orm/pg-core';
-//
-// // ======= Table of Characters =======
-// export const characters = pgTable('characters', {
-// 	id: uuid('id').defaultRandom().primaryKey(),
-// 	firstName: varchar('first_name', { length: 100 }).notNull(),
-// 	lastName: varchar('last_name', { length: 100 }).notNull(),
-// 	description: text('description'),
-// 	tags1: text('tags1')
-// 		.array()
-// 		.default(sql`'{}'::text[]`),
-// });
-//
-// // ======= Table of Universes =======
-// export const universes = pgTable('universes', {
-// 	id: uuid('id').defaultRandom().primaryKey(),
-// 	name: varchar('name', { length: 255 }).notNull(),
-// 	description: text('description'),
-// });
-//
-// // TODO: ======= Connecting Characters with Universes (Many-to-Many) =======
-//
-// // ======= Table of Relationships =======
-// export const relationships = pgTable('relationships', {
-// 	id: uuid('id').defaultRandom().primaryKey(),
-// 	sourceId: uuid('source_id')
-// 		.references(() => characters.id, { onDelete: 'cascade' })
-// 		.notNull(),
-// 	targetId: uuid('target_id')
-// 		.references(() => characters.id, { onDelete: 'cascade' })
-// 		.notNull(),
-// 	about: text('about').notNull(),
-// 	isBidirectional: boolean('is_bidirectional').default(false),
-// });
-//
-// // ======= Table of Stories =======
-// export const stories = pgTable('stories', {
-// 	id: uuid('id').defaultRandom().primaryKey(),
-// 	title: varchar('title', { length: 255 }).notNull(),
-// 	content: text('content').notNull(),
-// 	characterId: uuid('character_id')
-// 		.references(() => characters.id, { onDelete: 'cascade' })
-// 		.notNull(),
-// });
