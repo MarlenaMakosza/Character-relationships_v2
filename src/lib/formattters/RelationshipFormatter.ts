@@ -1,4 +1,4 @@
-import type { Relationship } from '../class/Relationship';
+import type { Relationship } from '$lib/domain/Relationship';
 
 export class RelationshipFormatter {
 	public static toPOJO(relation: Relationship): {

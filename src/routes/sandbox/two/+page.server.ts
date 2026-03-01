@@ -1,4 +1,4 @@
-import { Characters } from '$lib/class/Characters';
+import { Characters } from '$lib/domain/Characters';
 
 import { fetchCharactersClass } from '../server/queries';
 

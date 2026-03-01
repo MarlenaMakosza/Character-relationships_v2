@@ -1,4 +1,4 @@
-import CharacterRepository from '$lib/server/repositories/CharacterRepository';
+import CharacterRepository from '$lib/repositories/CharacterRepository';
 import { error, type RequestHandler } from '@sveltejs/kit';
 import { StatusCodes } from 'http-status-codes';
 

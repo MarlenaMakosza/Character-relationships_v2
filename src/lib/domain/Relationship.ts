@@ -1,4 +1,4 @@
-// import type { Character } from '$lib/class/Character';
+// import type { Character } from '$lib/domain/Character';
 
 export class Relationship {
 	public constructor(

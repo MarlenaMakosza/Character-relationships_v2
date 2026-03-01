@@ -1,4 +1,4 @@
-import type { Relationship } from '$lib/class/Relationship';
+import type { Relationship } from '$lib/domain/Relationship';
 
 import { RelationshipFormatter } from '$lib/formattters/RelationshipFormatter';
 import { graphviz } from 'd3-graphviz';
