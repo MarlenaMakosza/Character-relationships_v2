@@ -96,3 +96,113 @@ src/
 ```
 
 Shared types and utilities go into `shared/`.
+
+---
+
+## Logging
+
+> **TODO: research** — porównać `winston` vs `pino` pod kątem przechowywania i przeszukiwania logów. Sekcja do uzupełnienia po rozeznaniu.
+
+Na razie:
+- Logujemy tylko błędy (`error`)
+- Narzędzie: `console.error`
+
+---
+
+## Types & Enums
+
+- `interface` for object/class shapes; `type` for unions, aliases, and complex types:
+  ```ts
+  interface User { name: string; }
+  type Status = "active" | "inactive";
+  type AdminUser = User & { role: string };
+  ```
+
+- Use `const enum` instead of `enum` — compiler inlines values directly, no runtime object generated:
+  ```ts
+  // avoid
+  enum Direction { Up, Down }
+
+  // prefer — zero runtime overhead
+  const enum Direction { Up, Down }
+  ```
+  > Note: `const enum` does not work with Babel or esbuild. If you switch to one of these, migrate to regular `enum` or `const object`.
+
+- Generic type parameters: use descriptive names (`TItem`, `TValue`, `TResult`) — single letters only when the context is obvious and there is just one parameter
+
+---
+
+## Formatting
+
+Enforced by Prettier. Config (`.prettierrc`):
+
+```json
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "bracketSpacing": true
+}
+```
+
+---
+
+## Pull Requests
+
+Every PR requires a description using the following template:
+
+```markdown
+## What
+<!-- What was changed -->
+
+## Why
+<!-- Why this change was needed -->
+
+## How to test
+<!-- Steps to verify the change works -->
+
+## Screenshots
+<!-- Optional: UI changes -->
+
+## Breaking changes
+<!-- Optional: anything that breaks existing behaviour -->
+```
+
+First three sections are mandatory. Last two are optional.
+
+---
+
+## Git Workflow
+
+**GitHub Flow** — `main` is always deployable, every change goes through a feature branch + PR.
+
+Branch naming:
+- `feature/short-description` — new functionality
+- `fix/short-description` — bug fix
+- `chore/short-description` — maintenance, dependencies, config
+
+Rules:
+- Never commit directly to `main`
+- Branch lives as long as needed — merge via PR when ready
+- Delete branch after merge
+
+---
+
+## Commits
+
+- Format: **Conventional Commits** (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:` etc.)
+- Language: **English**
+- Single change → one-liner:
+  ```
+  feat: add user discount calculation
+  ```
+- Multiple changes → with body:
+  ```
+  feat: add user discount calculation
+
+  Trial users treated as premium for first 30 days.
+  Affects checkout flow and invoice generation.
+  ```
