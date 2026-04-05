@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import '$lib/scripts/app.css';
 
   import type { ICharacter, IRelation } from '$lib/interfaces/interfaces';
@@ -71,4 +71,4 @@
     margin-left: auto;
     width: fit-content;
   }
-</style>
+</style> -->

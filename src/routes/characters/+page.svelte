@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import '$lib/scripts/app.css';
 
   import type { ICharacter } from '$lib/interfaces/interfaces';
@@ -68,4 +68,4 @@
       {/each}
     </tbody>
   </table>
-</div>
+</div> -->

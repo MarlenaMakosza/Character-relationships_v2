@@ -374,11 +374,6 @@ export default [
         'tsDoc/syntax': 'warn',
       }),
 
-      /* Prettier rules */
-      ...(prettierFlag && {
-        ...prettier.rules,
-      }),
-
       /* js rules */
       ...(jsFlag && {
         // ...js.configs.all.rules,
@@ -1020,6 +1015,11 @@ export default [
         // https://typescript-eslint.io/rules/no-dupe-class-members/
         'no-dupe-class-members': 'off',
         '@typescript-eslint/no-dupe-class-members': 'off',
+      }),
+
+      /* Prettier rules — must be last to override all stylistic rules */
+      ...(prettierFlag && {
+        ...prettier.rules,
       }),
     },
   },

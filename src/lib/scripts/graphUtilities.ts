@@ -1,10 +1,10 @@
-import type { Relationship } from '$lib/domain/Relationship';
+// import type { Relationship } from '$lib/domain/Relationship';
 
-import { RelationshipFormatter } from '$lib/formattters/RelationshipFormatter';
-import { graphviz } from 'd3-graphviz';
+// import { RelationshipFormatter } from '$lib/formatters/RelationshipFormatter';
+// import { graphviz } from 'd3-graphviz';
 
-export function renderGraph(relations: readonly Relationship[]): void {
-  const diag = relations.map(relation => RelationshipFormatter.toString(relation)).join(' ');
+// export function renderGraph(relations: readonly Relationship[]): void {
+//   const diag = relations.map(relation => RelationshipFormatter.toString(relation)).join(' ');
 
-  graphviz('#graph').renderDot(`digraph { ${diag} }`);
-}
+//   graphviz('#graph').renderDot(`digraph { ${diag} }`);
+// }

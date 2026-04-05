@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import '$lib/scripts/app.css';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
@@ -50,4 +50,4 @@
 
 {#if errorMessage}
   <p style:color="red" style:text-align="center">{errorMessage}</p>
-{/if}
+{/if} -->

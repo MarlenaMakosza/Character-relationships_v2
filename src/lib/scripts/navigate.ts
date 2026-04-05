@@ -1,5 +1,5 @@
 import { goto } from '$app/navigation';
-import { base } from '$app/paths';
+import { resolve } from '$app/paths';
 
 export async function navigateBetweenPages(
   eventClickButtonByUser: Readonly<MouseEvent>,
@@ -9,5 +9,5 @@ export async function navigateBetweenPages(
     return;
   }
   const pageName = target.name;
-  await goto(`${base}/${pageName}`);
+  await goto(resolve(`/${pageName}`, {}), { replaceState: true });
 }

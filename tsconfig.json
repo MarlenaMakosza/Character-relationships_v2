@@ -21,5 +21,5 @@
       "@testRoot/*": ["./test/e2e/*"]
     }
   },
-  "include": ["src/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts"]
+  "include": ["src/**/*", "tests/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts"]
 }
