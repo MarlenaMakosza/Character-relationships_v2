@@ -20,5 +20,5 @@
 			"@testRoot/*": ["./test/e2e/*"]
 		}
 	},
-	"include": ["src/**/*", "vitest-setup-client.ts"]
-}
+	"include": ["src/**/*", "vitest-setup-client.ts", "svelte.config.js", "vite.config.ts", "eslint.config.js", "drizzle.config.ts", "cspell.json", "vitest.config.ts", "commitlint.config.js", ]
+	}
