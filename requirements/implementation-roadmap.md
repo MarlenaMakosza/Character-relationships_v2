@@ -1,7 +1,9 @@
 # Roadmap Implementacji - Character Relationships
 
 ## Sprint 0: Setup & Infrastructure (1-2 tygodnie)
+
 **Cel:** Podstawowa infrastruktura projektu
+
 - [ ] Setup PostgreSQL + Docker Compose
 - [ ] Konfiguracja Drizzle ORM
 - [ ] Podstawowa struktura projektu SvelteKit
@@ -10,7 +12,9 @@
 - [ ] CI/CD podstawowe (linting, formatting)
 
 ## Sprint 1: Core Database Schema (1-2 tygodnie)
+
 **Cel:** Zaprojektować i zaimplementować bazę danych
+
 - [ ] Schema dla Person (podstawowe pola)
 - [ ] Schema dla Name (primary + alternate names)
 - [ ] Schema dla Attributes (custom key-value)
@@ -19,7 +23,9 @@
 - [ ] Seed data dla testów
 
 ## Sprint 2: Basic Character CRUD (2 tygodnie)
+
 **Cel:** Podstawowe zarządzanie postaciami
+
 - [ ] API endpoints: Create, Read, Update, Delete postaci
 - [ ] Zod schemas dla walidacji
 - [ ] Formularz dodawania postaci (podstawowe pola)
@@ -28,7 +34,9 @@
 - [ ] Testy jednostkowe i integracyjne
 
 ## Sprint 3: Character Details - Names & Basic Info (1-2 tygodnie)
+
 **Cel:** Rozszerzone informacje o postaci
+
 - [ ] Primary Name (z wszystkimi polami: suffix, title, nickname, etc.)
 - [ ] Alternate Names (lista)
 - [ ] Gender selection
@@ -38,7 +46,9 @@
 - [ ] Walidacja Zod dla złożonych struktur
 
 ## Sprint 4: Character Attributes & Customization (1-2 tygodnie)
+
 **Cel:** Custom attributes i tagi
+
 - [ ] Custom Attributes (key-value pairs)
 - [ ] Tags system
 - [ ] Appearance fields (kolor włosów, oczu, etc.)
@@ -47,7 +57,9 @@
 - [ ] Filtering po tagach
 
 ## Sprint 5: Relationships - Database & Core Logic (2-3 tygodnie)
+
 **Cel:** System relacji między postaciami
+
 - [ ] Schema dla Relationships
 - [ ] Schema dla Relationship Types (predefiniowane + custom)
 - [ ] Logika bidirectional/unidirectional/asymmetric
@@ -56,7 +68,9 @@
 - [ ] Testy logiki relacji
 
 ## Sprint 6: Relationships - UI (2 tygodnie)
+
 **Cel:** Interfejs do zarządzania relacjami
+
 - [ ] Formularz dodawania relacji
 - [ ] Wybór typu relacji (dropdown z kategoriami)
 - [ ] Tworzenie custom relationship types
@@ -65,7 +79,9 @@
 - [ ] Validacja konfliktów (np. nie można być matką i ojcem jednocześnie)
 
 ## Sprint 7: Events System (2-3 tygodnie)
+
 **Cel:** Wydarzenia powiązane z postaciami
+
 - [ ] Schema dla Events
 - [ ] Schema dla Event Types (predefiniowane + custom)
 - [ ] API dla CRUD wydarzeń
@@ -75,7 +91,9 @@
 - [ ] UI dla zarządzania wydarzeniami
 
 ## Sprint 8: Media & Notes (1-2 tygodnie)
+
 **Cel:** Media i dokumentacja postaci
+
 - [ ] Upload obrazków (avatar/media list)
 - [ ] Storage dla plików (lokalny lub cloud)
 - [ ] Notes system (lista notatek)
@@ -84,7 +102,9 @@
 - [ ] UI dla zarządzania media i notatkami
 
 ## Sprint 9: Visualization - Graphviz (2-3 tygodnie)
+
 **Cel:** Wizualizacja relacji grafem
+
 - [ ] Generowanie DOT notation z danych
 - [ ] Integracja Graphviz (backend lub client-side)
 - [ ] Renderowanie grafu SVG
@@ -94,7 +114,9 @@
 - [ ] Export grafu do SVG/PNG
 
 ## Sprint 10: Export/Import - JSON/CSV (2 tygodnie)
+
 **Cel:** Import i export danych
+
 - [ ] Export do JSON (pełna struktura)
 - [ ] Import z JSON (z walidacją)
 - [ ] Export do CSV (postaci + relacje)
@@ -103,7 +125,9 @@
 - [ ] UI dla import/export
 
 ## Sprint 11: Export PDF (2 tygodnie)
+
 **Cel:** Generowanie PDF z grafami
+
 - [ ] Integracja pdfmake
 - [ ] Template dla PDF (layout)
 - [ ] Osadzanie grafu w PDF
@@ -112,7 +136,9 @@
 - [ ] Customizacja PDF (wybór co eksportować)
 
 ## Sprint 12: Multi-Project Support (2 tygodnie)
+
 **Cel:** Obsługa wielu projektów
+
 - [ ] Schema dla Projects
 - [ ] CRUD dla projektów
 - [ ] Przypisywanie postaci do projektów
@@ -121,7 +147,9 @@
 - [ ] Import/Export per projekt
 
 ## Sprint 13: Search & Filtering (1-2 tygodnie)
+
 **Cel:** Zaawansowane wyszukiwanie
+
 - [ ] Full-text search postaci
 - [ ] Filtrowanie po atrybutach
 - [ ] Filtrowanie po relacjach
@@ -130,7 +158,9 @@
 - [ ] UI dla advanced search
 
 ## Sprint 14: UX Improvements & Polish (2 tygodnie)
+
 **Cel:** Dopracowanie UI/UX
+
 - [ ] Responsywny design (mobile)
 - [ ] Accessibility (ARIA, keyboard navigation)
 - [ ] Dark mode (opcjonalnie)
@@ -140,7 +170,9 @@
 - [ ] Keyboard shortcuts
 
 ## Sprint 15: D3.js Visualization (Eksperymentalny) (2-3 tygodnie)
+
 **Cel:** Alternatywna wizualizacja z D3.js
+
 - [ ] Podstawowy force-directed graph
 - [ ] Interaktywność (drag & drop, zoom)
 - [ ] Grupowanie po typach relacji
@@ -149,7 +181,9 @@
 - [ ] Performance optimization dla dużych grafów
 
 ## Sprint 16: Testing & Bug Fixes (1-2 tygodnie)
+
 **Cel:** Testy i stabilizacja
+
 - [ ] Unit tests coverage > 80%
 - [ ] Integration tests dla krytycznych flow
 - [ ] E2E tests (podstawowe user journeys)
@@ -158,7 +192,9 @@
 - [ ] Security audit (basic)
 
 ## Sprint 17: Documentation & Deployment (1 tydzień)
+
 **Cel:** Dokumentacja i deployment
+
 - [ ] README z instrukcją instalacji
 - [ ] User guide (jak używać)
 - [ ] API documentation
@@ -170,6 +206,7 @@
 ## Opcjonalne/Future Sprints (post-MVP)
 
 ### Sprint X: Advanced Features
+
 - [ ] Undo/Redo system
 - [ ] Version history dla postaci
 - [ ] Collaborative editing (future: multi-user)
@@ -178,6 +215,7 @@
 - [ ] Timeline view (oś czasu wydarzeń)
 
 ### Sprint Y: Authentication & Multi-user (daleka przyszłość)
+
 - [ ] User authentication
 - [ ] User permissions
 - [ ] Shared projects
@@ -188,7 +226,9 @@
 ## Priorytet MoSCoW
 
 ### Must Have (Sprinty 0-10)
+
 Core functionality + Export/Import
+
 - Setup & Infrastructure
 - Database Schema
 - Character CRUD
@@ -201,15 +241,18 @@ Core functionality + Export/Import
 - JSON/CSV Export/Import
 
 ### Should Have (Sprinty 11-14)
+
 - PDF Export
 - Multi-Project Support
 - Search & Filtering
 - UX Improvements
 
 ### Could Have (Sprint 15)
+
 - D3.js Visualization
 
 ### Won't Have (MVP)
+
 - Advanced Features (Sprint X)
 - Authentication & Multi-user (Sprint Y)
 

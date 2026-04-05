@@ -1,45 +1,45 @@
-import { Character } from '$lib/domain/Character';
-import { Characters } from '$lib/domain/Characters';
-import db from '$lib/server/db';
-import { characters } from '$lib/server/db/schema/schema';
-import { eq } from 'drizzle-orm';
+// import { Character } from '$lib/domain/Character';
+// import { Characters } from '$lib/domain/Characters';
+// import db from '$lib/server/db';
+// import { characters } from '$lib/server/db/schema/schema';
+// import { eq } from 'drizzle-orm';
 
-class CharacterRepository {
-	public static async getListCharacters(): Promise<Character[]> {
-		return db.select().from(characters).orderBy(characters.id);
-	}
+// class CharacterRepository {
+//   public static async getListCharacters(): Promise<Character[]> {
+//     return db.select().from(characters).orderBy(characters.id);
+//   }
 
-	public static async getCharacters(): Promise<Characters> {
-		const characterRecords = await db.select().from(characters).orderBy(characters.id);
-		// mapper
-		const charactersArray = characterRecords.map(
-			(char): Character => new Character(char.id, char.firstName, char.lastName, char.age),
-		);
+//   public static async getCharacters(): Promise<Characters> {
+//     const characterRecords = await db.select().from(characters).orderBy(characters.id);
+//     // mapper
+//     const charactersArray = characterRecords.map(
+//       (char): Character => new Character(char.id, char.firstName, char.lastName, char.age),
+//     );
 
-		return new Characters(charactersArray);
-	}
+//     return new Characters(charactersArray);
+//   }
 
-	public static async getCharacterById(id: number): Promise<Character> {
-		const characterRecord = await db.query.characters.findFirst({
-			where: eq(characters.id, id),
-		});
-		if (characterRecord == null) {
-			throw new Error(`Character with ID ${id} not found`);
-		}
+//   public static async getCharacterById(id: number): Promise<Character> {
+//     const characterRecord = await db.query.characters.findFirst({
+//       where: eq(characters.id, id),
+//     });
+//     if (characterRecord == null) {
+//       throw new Error(`Character with ID ${id} not found`);
+//     }
 
-		return characterRecord;
-	}
+//     return characterRecord;
+//   }
 
-	// TODO - take framework to responses status codes or finally
-	public static async deleteCharacterById(id: number): Promise<Response> {
-		try {
-			await db.delete(characters).where(eq(characters.id, id));
+//   // TODO - take framework to responses status codes or finally
+//   public static async deleteCharacterById(id: number): Promise<Response> {
+//     try {
+//       await db.delete(characters).where(eq(characters.id, id));
 
-			return new Response('Character deleted successfully', { status: 200 });
-		} catch {
-			return new Response('Error deleting character!', { status: 500 });
-		}
-	}
-}
+//       return new Response('Character deleted successfully', { status: 200 });
+//     } catch {
+//       return new Response('Error deleting character!', { status: 500 });
+//     }
+//   }
+// }
 
-export default CharacterRepository;
+// export default CharacterRepository;

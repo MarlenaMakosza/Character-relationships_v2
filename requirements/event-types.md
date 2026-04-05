@@ -1,6 +1,7 @@
 # Predefiniowane Typy Wydarzeń (Events)
 
 ## Życiowe (Life Events)
+
 - Narodziny
 - Śmierć
 - Wskrzeszenie (dla fantasy)
@@ -11,6 +12,7 @@
 - Powrót (po zaginięciu)
 
 ## Rodzinne (Family Events)
+
 - Ślub/Zaślubiny
 - Rozwód
 - Zaręczyny
@@ -21,6 +23,7 @@
 - Wydziedziczenie
 
 ## Edukacyjne (Education)
+
 - Rozpoczęcie nauki
 - Ukończenie szkoły/akademii
 - Otrzymanie tytułu/stopnia
@@ -29,6 +32,7 @@
 - Ceremonia wtajemniczenia
 
 ## Zawodowe/Kariera (Career)
+
 - Rozpoczęcie pracy
 - Awans
 - Degradacja
@@ -40,6 +44,7 @@
 - Abdykacja
 
 ## Wojskowe/Bitewne (Military/Combat)
+
 - Wstąpienie do armii
 - Pierwsza bitwa
 - Odznaczenie wojskowe
@@ -51,6 +56,7 @@
 - Przegrana/Wygrana bitwa
 
 ## Kryminalne (Criminal)
+
 - Aresztowanie
 - Proces sądowy
 - Skazanie
@@ -61,6 +67,7 @@
 - Egzekucja
 
 ## Romantyczne (Romantic)
+
 - Pierwsze spotkanie (z partnerem)
 - Pierwsza randka
 - Pierwszy pocałunek
@@ -72,6 +79,7 @@
 - Pojednanie
 
 ## Podróże/Lokalizacja (Travel/Location)
+
 - Przeprowadzka
 - Rozpoczęcie podróży
 - Powrót z podróży
@@ -82,6 +90,7 @@
 - Teleportacja (fantasy)
 
 ## Zdrowotne (Health)
+
 - Choroba
 - Wyzdrowienie
 - Trwałe okaleczenie
@@ -93,6 +102,7 @@
 - Odzyskanie pamięci
 
 ## Magiczne/Supernatural (Fantasy/Magic)
+
 - Odkrycie mocy magicznych
 - Pierwsze zaklęcie
 - Otrzymanie magicznego przedmiotu
@@ -105,6 +115,7 @@
 - Spotkanie z bóstwem
 
 ## Społeczne/Polityczne (Social/Political)
+
 - Przystąpienie do organizacji/gildii
 - Opuszczenie organizacji
 - Zdrada organizacji
@@ -117,6 +128,7 @@
 - Wybory/Głosowanie
 
 ## Religijne/Duchowe (Religious/Spiritual)
+
 - Nawrócenie
 - Apostazja (wyrzeczenie się wiary)
 - Pielgrzymka
@@ -128,6 +140,7 @@
 - Herezja (oskarżenie o)
 
 ## Emocjonalne/Psychologiczne (Emotional/Psychological)
+
 - Trauma
 - Przełom życiowy (breakthrough)
 - Kryzys wiary
@@ -138,6 +151,7 @@
 - Moment oświecenia
 
 ## Osiągnięcia (Achievements)
+
 - Wielki sukces
 - Porażka
 - Odkrycie (naukowe/geograficzne)
@@ -149,6 +163,7 @@
 - Otrzymanie nagrody/wyróżnienia
 
 ## Relacyjne (Relationship)
+
 - Pierwsze spotkanie (z kimkolwiek ważnym)
 - Zawarcie przyjaźni
 - Zerwanie przyjaźni
@@ -159,6 +174,7 @@
 - Śmierć bliskiej osoby
 
 ## Finansowe (Financial)
+
 - Bankructwo
 - Zyskanie fortuny
 - Spadek (dziedziczenie)
@@ -167,6 +183,7 @@
 - Spłata długu
 
 ## Inne/Customowe (Other)
+
 - Pierwszy raz (dowolny "pierwszy raz")
 - Spotkanie z ważną postacią
 - Odkrycie tajemnicy

@@ -120,7 +120,6 @@
 ### Relacje w bazie danych
 
 - **One-to-Many:**
-
   - Person → Alternate Names
   - Person → Media
   - Person → Notes
