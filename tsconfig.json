@@ -12,14 +12,7 @@
     "strictNullChecks": true,
     "moduleResolution": "bundler",
     "noImplicitReturns": true,
-    "noEmit": true,
-    "paths": {
-      "$lib/*": ["./src/lib/*"],
-      "@src/*": ["./src/*"],
-      "@routes/*": ["./src/routes/*"],
-      "@test/*": ["./test/unit/*"],
-      "@testRoot/*": ["./test/e2e/*"]
-    }
+    "noEmit": true
   },
   "include": ["src/**/*", "tests/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts"]
 }
