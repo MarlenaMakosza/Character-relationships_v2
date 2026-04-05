@@ -11,13 +11,13 @@
 		"strict": true,
 		"moduleResolution": "bundler",
 		"noImplicitReturns": true,
-		"baseUrl": ".",
+		"noEmit": true,
 		"paths": {
-			"$lib/*": ["src/lib/*"],
-			"@src/*": ["src/*"],
-			"@routes/*": ["src/routes/*"],
-			"@test/*": ["test/unit/*"],
-			"@testRoot/*": ["test/e2e/*"]
+			"$lib/*": ["./src/lib/*"],
+			"@src/*": ["./src/*"],
+			"@routes/*": ["./src/routes/*"],
+			"@test/*": ["./test/unit/*"],
+			"@testRoot/*": ["./test/e2e/*"]
 		}
 	}
 }
