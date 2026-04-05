@@ -4,7 +4,13 @@
 
 ### Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), run the following to generate SvelteKit internals (required before first run and after cloning):
+
+```bash
+npm run check
+```
+
+Then start a development server:
 
 ```bash
 npm run dev
