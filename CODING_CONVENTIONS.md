@@ -142,7 +142,7 @@ Enforced by Prettier. Config (`.prettierrc`):
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
-  "singleQuote": false,
+  "singleQuote": true,
   "trailingComma": "es5",
   "bracketSpacing": true
 }
