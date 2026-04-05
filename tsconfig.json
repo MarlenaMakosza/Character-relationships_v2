@@ -19,5 +19,6 @@
 			"@test/*": ["./test/unit/*"],
 			"@testRoot/*": ["./test/e2e/*"]
 		}
-	}
+	},
+	"include": ["src/**/*", "vitest-setup-client.ts"]
 }
