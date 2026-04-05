@@ -18,27 +18,35 @@ export const characters = pgTable('characters', {
 
 export const characterNames = pgTable('character_names', {
   id: serial('id').primaryKey(),
-  characterId: uuid('character_id').notNull().references(() => characters.id, { onDelete: 'cascade' }),
+  characterId: uuid('character_id')
+    .notNull()
+    .references(() => characters.id, { onDelete: 'cascade' }),
   value: text('value').notNull(),
 });
 
 export const characterSurnames = pgTable('character_surnames', {
   id: serial('id').primaryKey(),
-  characterId: uuid('character_id').notNull().references(() => characters.id, { onDelete: 'cascade' }),
+  characterId: uuid('character_id')
+    .notNull()
+    .references(() => characters.id, { onDelete: 'cascade' }),
   value: text('value').notNull(),
 });
 
 export const characterLabels = pgTable('character_labels', {
-  characterId: uuid('character_id').notNull().references(() => characters.id, { onDelete: 'cascade' }),
+  characterId: uuid('character_id')
+    .notNull()
+    .references(() => characters.id, { onDelete: 'cascade' }),
   label: text('label').notNull(),
 });
 
 export const characterSections = pgTable('character_sections', {
   id: serial('id').primaryKey(),
-  characterId: uuid('character_id').notNull().references(() => characters.id, { onDelete: 'cascade' }),
+  characterId: uuid('character_id')
+    .notNull()
+    .references(() => characters.id, { onDelete: 'cascade' }),
   title: text('title').notNull(),
   content: text('content'),
-  // możesz dodać np. order, type, etc.
+  // you can add np. order, type, etc.
 });
 
 export const relations = pgTable('relations', {

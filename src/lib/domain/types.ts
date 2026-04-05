@@ -1,10 +1,10 @@
-export type CharacterSectionType
-  = | 'abilities'
-    | 'appearance'
-    | 'backstory'
-    | 'custom'
-    | 'dates'
-    | 'personality';
+export type CharacterSectionType =
+  | 'abilities'
+  | 'appearance'
+  | 'backstory'
+  | 'custom'
+  | 'dates'
+  | 'personality';
 
 export interface ImageSource {
   type: ImageSourceType;

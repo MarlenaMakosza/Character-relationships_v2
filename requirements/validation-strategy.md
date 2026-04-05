@@ -9,6 +9,7 @@ Analiza projektu Gramps pokazała **minimalną walidację** przy zapisie postaci
 ### 1. Minimalna walidacja przy zapisie
 
 **Kod: editprimary.py:175-176**
+
 ```python
 def object_is_empty(self):
     return self.obj.serialize()[1:] == self.empty_object().serialize()[1:]
@@ -19,6 +20,7 @@ Sprawdza tylko czy obiekt jest **dokładnie pusty** (porównuje z pustym obiekte
 ### 2. Empty object ma już domyślne wartości
 
 **Kod: editperson.py:159-170**
+
 ```python
 def empty_object(self):
     person = Person()
@@ -33,6 +35,7 @@ Nawet pusty obiekt ma już `Surname()` dodane - więc porównanie `serialize()` 
 ### 3. Automatyczne fixowanie przy zapisie
 
 **Kod: editperson.py:933-948**
+
 ```python
 def save(self, *obj):
     if self.object_is_empty():
@@ -54,6 +57,7 @@ def save(self, *obj):
 **Gramps nie wymaga żadnych konkretnych pól!**
 
 Przy zapisie:
+
 1. Sprawdza czy obiekt jest całkowicie pusty
 2. Jeśli nie - automatycznie fixuje brakujące rzeczy
 3. Zapisuje
@@ -66,10 +70,10 @@ Przy zapisie:
 
 ```typescript
 interface Person {
-  id: string;              // auto-generated
-  given_name: string;      // może być puste ""
-  surname: string;         // może być puste ""
-  additional_names: AdditionalName[];  // może być pusta array
+  id: string; // auto-generated
+  given_name: string; // może być puste ""
+  surname: string; // może być puste ""
+  additional_names: AdditionalName[]; // może być pusta array
   gender?: string;
   birth_date?: string;
   // ... reszta pól opcjonalna
@@ -135,30 +139,32 @@ function hasAnyData(person: Person): boolean {
 ```typescript
 import { z } from 'zod';
 
-const PersonSchema = z.object({
-  id: z.string(),
-  given_name: z.string().default(''),     // domyślnie puste
-  surname: z.string().default(''),        // domyślnie puste
-  additional_names: z.array(AdditionalNameSchema).default([]),
-  gender: z.string().optional(),
-  birth_date: z.string().optional(),
-  // ... reszta opcjonalna
-}).refine(
-  (data) => {
-    // Custom validation: co najmniej jedno pole musi być wypełnione
-    return (
-      data.given_name.trim() !== '' ||
-      data.surname.trim() !== '' ||
-      data.additional_names.length > 0 ||
-      data.gender !== undefined ||
-      data.birth_date !== undefined
-      // ... inne pola
-    );
-  },
-  {
-    message: "At least one field must be filled to save a person"
-  }
-);
+const PersonSchema = z
+  .object({
+    id: z.string(),
+    given_name: z.string().default(''), // domyślnie puste
+    surname: z.string().default(''), // domyślnie puste
+    additional_names: z.array(AdditionalNameSchema).default([]),
+    gender: z.string().optional(),
+    birth_date: z.string().optional(),
+    // ... reszta opcjonalna
+  })
+  .refine(
+    data => {
+      // Custom validation: co najmniej jedno pole musi być wypełnione
+      return (
+        data.given_name.trim() !== '' ||
+        data.surname.trim() !== '' ||
+        data.additional_names.length > 0 ||
+        data.gender !== undefined ||
+        data.birth_date !== undefined
+        // ... inne pola
+      );
+    },
+    {
+      message: 'At least one field must be filled to save a person',
+    },
+  );
 ```
 
 ---
@@ -166,15 +172,18 @@ const PersonSchema = z.object({
 ## Zachowanie UI
 
 ### Formularz
+
 - **Brak wymaganych pól** - wszystkie pola opcjonalne
 - Użytkownik może wpisać cokolwiek: tylko imię, tylko nazwisko, tylko tytuł, tylko płeć
-- Pola nie mają czerwonych gwiazdek "*" (wszystko opcjonalne)
+- Pola nie mają czerwonych gwiazdek "\*" (wszystko opcjonalne)
 
 ### Przycisk "Save"
+
 - Aktywny jeśli **cokolwiek** zostało wpisane
 - Nieaktywny jeśli formularz całkowicie pusty
 
 ### Przy próbie zapisu pustej postaci
+
 ```text
 Error Dialog:
 "Nie można zapisać postaci"
@@ -182,6 +191,7 @@ Error Dialog:
 ```
 
 ### Przy zapisie z danymi
+
 - Automatyczne czyszczenie/fixowanie:
   - Trim whitespace z pól tekstowych
   - Usuwanie pustych elementów z array
@@ -206,6 +216,7 @@ Error Dialog:
 ## Rozwiązania wad
 
 - **Display name fallback:**
+
   ```typescript
   function getDisplayName(person: Person): string {
     if (person.given_name || person.surname) {
@@ -225,7 +236,7 @@ Error Dialog:
       ...person,
       given_name: person.given_name.trim(),
       surname: person.surname.trim(),
-      additional_names: person.additional_names.filter(n => n.name.trim() !== '')
+      additional_names: person.additional_names.filter(n => n.name.trim() !== ''),
     };
   }
   ```
@@ -253,8 +264,7 @@ async function savePerson(person: Person) {
   const result = PersonSchema.safeParse(cleaned);
 
   if (!result.success) {
-    showError("Nie można zapisać postaci",
-              "Proszę wprowadzić przynajmniej jedno pole.");
+    showError('Nie można zapisać postaci', 'Proszę wprowadzić przynajmniej jedno pole.');
     return;
   }
 

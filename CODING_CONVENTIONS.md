@@ -23,7 +23,7 @@ General code conventions for this project.
 ## Comments
 
 - Comment **why**, not **what** — the name tells you what, the comment explains intent and decisions
-- Commenting *what* is a last resort (e.g. non-obvious algorithm)
+- Commenting _what_ is a last resort (e.g. non-obvious algorithm)
 - `TODO` and `FIXME` are allowed as temporary markers
 - All public API must have **TSDoc headers** (`/** ... */`) — documentation is generated from them
 
@@ -43,7 +43,7 @@ function getDiscount(user: User): number { ... }
 
 - **Result pattern** for application logic and operations that may fail:
   ```ts
-  function validate(input: string): { data: number | null; error: string | null }
+  function validate(input: string): { data: number | null; error: string | null };
   ```
 - Exceptions are caught **only at external boundaries** (database, network, third-party libs) and wrapped into Result
 - We do not throw exceptions inside application logic
@@ -65,13 +65,13 @@ function getDiscount(user: User): number { ... }
   ```ts
   // correct
   class OrderService {
-      constructor(private db: Database) {}
+    constructor(private db: Database) {}
   }
   ```
 - Import order: **external libraries first**, then internal modules
 - Use **absolute paths** (aliases), not relative ones
   ```ts
-  import { UserService } from '@app/user/user.service';  // correct
+  import { UserService } from '@app/user/user.service'; // correct
   import { UserService } from '../../user/user.service'; // avoid
   ```
 
@@ -104,6 +104,7 @@ Shared types and utilities go into `shared/`.
 > **TODO: research** — porównać `winston` vs `pino` pod kątem przechowywania i przeszukiwania logów. Sekcja do uzupełnienia po rozeznaniu.
 
 Na razie:
+
 - Logujemy tylko błędy (`error`)
 - Narzędzie: `console.error`
 
@@ -112,6 +113,7 @@ Na razie:
 ## Null & Undefined
 
 - `null` — intentional absence of a value in the business domain:
+
   ```ts
   // user may not have an avatar — that's a valid business state
   interface User {
@@ -120,6 +122,7 @@ Na razie:
   ```
 
 - `undefined` — uninitialized value or optional field:
+
   ```ts
   interface Config {
     timeout?: number; // optional, not set yet
@@ -136,20 +139,31 @@ Na razie:
 ## Types & Enums
 
 - `interface` for object/class shapes; `type` for unions, aliases, and complex types:
+
   ```ts
-  interface User { name: string; }
-  type Status = "active" | "inactive";
+  interface User {
+    name: string;
+  }
+  type Status = 'active' | 'inactive';
   type AdminUser = User & { role: string };
   ```
 
 - Use `const enum` instead of `enum` — compiler inlines values directly, no runtime object generated:
+
   ```ts
   // avoid
-  enum Direction { Up, Down }
+  enum Direction {
+    Up,
+    Down,
+  }
 
   // prefer — zero runtime overhead
-  const enum Direction { Up, Down }
+  const enum Direction {
+    Up,
+    Down,
+  }
   ```
+
   > Note: `const enum` does not work with Babel or esbuild. If you switch to one of these, migrate to regular `enum` or `const object`.
 
 - Generic type parameters: use descriptive names (`TItem`, `TValue`, `TResult`) — single letters only when the context is obvious and there is just one parameter
@@ -180,18 +194,23 @@ Every PR requires a description using the following template:
 
 ```markdown
 ## What
+
 <!-- What was changed -->
 
 ## Why
+
 <!-- Why this change was needed -->
 
 ## How to test
+
 <!-- Steps to verify the change works -->
 
 ## Screenshots
+
 <!-- Optional: UI changes -->
 
 ## Breaking changes
+
 <!-- Optional: anything that breaks existing behaviour -->
 ```
 
@@ -204,11 +223,13 @@ First three sections are mandatory. Last two are optional.
 **GitHub Flow** — `main` is always deployable, every change goes through a feature branch + PR.
 
 Branch naming:
+
 - `feature/short-description` — new functionality
 - `fix/short-description` — bug fix
 - `chore/short-description` — maintenance, dependencies, config
 
 Rules:
+
 - Never commit directly to `main`
 - Branch lives as long as needed — merge via PR when ready
 - Delete branch after merge
@@ -224,6 +245,7 @@ Rules:
   feat: add user discount calculation
   ```
 - Multiple changes → with body:
+
   ```text
   feat: add user discount calculation
 

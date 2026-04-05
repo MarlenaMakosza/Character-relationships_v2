@@ -1,6 +1,7 @@
 # Predefiniowane Typy Relacji
 
 ## Rodzinne (Family) - Biologiczne
+
 - Matka/Dziecko
 - Ojciec/Dziecko
 - Rodzeństwo (pełne)
@@ -12,6 +13,7 @@
 - Pradziadek - Prawnuk
 
 ## Rodzinne - Prawne/Społeczne
+
 - Małżonek/Małżonka
 - Partner/Partnerka
 - Były małżonek/Była małżonka
@@ -23,6 +25,7 @@
 - Szwagier/Szwagierka
 
 ## Romantyczne (Romantic)
+
 - Zakochany w (jednostronne)
 - Para (wzajemne)
 - Kochankowie
@@ -35,6 +38,7 @@
 - Flirt
 
 ## Przyjacielskie (Friendship)
+
 - Przyjaciel
 - Najlepszy przyjaciel
 - Przyjaciel z dzieciństwa
@@ -45,6 +49,7 @@
 - Powiernik (confidant)
 
 ## Wrogość (Antagonistic)
+
 - Wróg
 - Nemezis
 - Rywal
@@ -55,6 +60,7 @@
 - Mściciel/Cel zemsty
 
 ## Hierarchiczne/Władza (Hierarchical)
+
 - Król/Królowa - Poddany
 - Lord/Pani - Wassal
 - Szef/Boss - Podwładny
@@ -64,6 +70,7 @@
 - Kapitan - Członek załogi
 
 ## Mentorskie/Edukacyjne (Mentorship)
+
 - Mentor - Uczeń/Mentee
 - Nauczyciel - Student
 - Mistrz - Czeladnik/Apprentice
@@ -72,6 +79,7 @@
 - Guru - Wyznawca
 
 ## Wojskowe/Bojowe (Military)
+
 - Dowódca - Żołnierz
 - Generał - Porucznik
 - Towarzysz broni
@@ -81,6 +89,7 @@
 - Jeniec wojenny - Strażnik
 
 ## Zawodowe (Professional)
+
 - Współpracownik
 - Partner biznesowy
 - Klient - Dostawca usług
@@ -90,6 +99,7 @@
 - Wydawca - Autor
 
 ## Przestępcze/Underworld (Criminal)
+
 - Boss mafii - Członek rodziny
 - Wspólnik w zbrodni
 - Informator - Handler
@@ -98,6 +108,7 @@
 - Handlarz - Klient
 
 ## Magiczne/Fantasy (Fantasy-specific)
+
 - Mistrz magii - Uczeń
 - Familiar - Mag
 - Kreator - Stworzenie
@@ -106,6 +117,7 @@
 - Wybrany/Prorok - Bóstwo
 
 ## Religijne/Duchowe (Religious)
+
 - Kapłan - Wierny
 - Prorok - Wyznawca
 - Święty - Czciciel
@@ -114,6 +126,7 @@
 - Guru - Uczeń duchowy
 
 ## Społeczne/Polityczne (Social/Political)
+
 - Sojusznik polityczny
 - Współspiskowiec
 - Zdrajca polityczny
@@ -122,6 +135,7 @@
 - Negocjator - Strona konfliktu
 
 ## Inne specyficzne (Other)
+
 - Dłużnik - Wierzyciel
 - Ofiarodawca - Beneficjent
 - Protektor - Protegowany

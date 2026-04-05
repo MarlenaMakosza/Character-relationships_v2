@@ -5,7 +5,7 @@ import { z, ZodError } from 'zod';
 const stringBoolean = z.coerce
   .string()
   .transform(value => value === 'true')
-  .default('false');
+  .default(false);
 
 const EnvironmentSchema = z.object({
   NODE_ENV: z.string().default('development'),
@@ -29,7 +29,7 @@ try {
   if (error instanceof ZodError) {
     let message = 'Missing required values in .env:\n';
     for (const issue of error.issues) {
-      message += `${issue.path[0]}\n`;
+      message += `${String(issue.path[0])}\n`;
     }
     const error_ = new Error(message);
     error_.stack = '';

@@ -1,25 +1,25 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
-	"compilerOptions": {
-		"allowJs": true,
-		"checkJs": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"sourceMap": true,
-		"strict": true,
-		"strictNullChecks": true,
-		"moduleResolution": "bundler",
-		"noImplicitReturns": true,
-		"noEmit": true,
-		"paths": {
-			"$lib/*": ["./src/lib/*"],
-			"@src/*": ["./src/*"],
-			"@routes/*": ["./src/routes/*"],
-			"@test/*": ["./test/unit/*"],
-			"@testRoot/*": ["./test/e2e/*"]
-		}
-	},
-	"include": ["src/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts"]
-	}
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "bundler",
+    "noImplicitReturns": true,
+    "noEmit": true,
+    "paths": {
+      "$lib/*": ["./src/lib/*"],
+      "@src/*": ["./src/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@test/*": ["./test/unit/*"],
+      "@testRoot/*": ["./test/e2e/*"]
+    }
+  },
+  "include": ["src/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts"]
+}

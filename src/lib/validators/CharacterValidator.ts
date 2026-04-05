@@ -1,10 +1,14 @@
 import type { Character } from '$lib/domain/Character';
 
+const missingName = 0;
+
 export const CharacterValidator = {
   isValid(character: Character): boolean {
-    return character.names.length > 0
-      || character.surnames.length > 0
-      || character.description?.trim().length > 0 > 0
-      || character.labels.length > 0;
+    return (
+      character.names.length > missingName ||
+      character.surnames.length > missingName ||
+      character.description?.trim().length > missingName ||
+      character.labels.length > missingName
+    );
   },
 };

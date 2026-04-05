@@ -14,27 +14,27 @@ import { describe, expect, it, vi } from 'vitest';
 // }));
 
 describe('Database Connection', () => {
-	it('should instantiate the database object', async () => {
-		expect.assertions(1);
-		const { db } = await import('$lib/server/db'); // Import after mock
-		expect(db).toBeDefined();
-	});
+  it('should instantiate the database object', async () => {
+    expect.assertions(1);
+    const { db } = await import('$lib/server/db'); // Import after mock
+    expect(db).toBeDefined();
+  });
 
-	it('should throw an error if DATABASE_URL is not set', async () => {
-		expect.assertions(1);
-		vi.mock('$env/dynamic/private', () => ({ env: {} })); // Mock missing DATABASE_URL
-		await expect(async () => import('$lib/server/db')).rejects.toThrow('DATABASE_URL is not set');
-	});
+  it('should throw an error if DATABASE_URL is not set', async () => {
+    expect.assertions(1);
+    vi.mock('$env/dynamic/private', () => ({ env: {} })); // Mock missing DATABASE_URL
+    await expect(async () => import('$lib/server/db')).rejects.toThrow('DATABASE_URL is not set');
+  });
 });
 
 describe('fetchCharacter', () => {
-	it('should return the character data', () => {
-		expect.assertions(1);
-		const asyncMock = vi.fn((): number => 42);
+  it('should return the character data', () => {
+    expect.assertions(1);
+    const asyncMock = vi.fn((): number => 42);
 
-		const result = asyncMock();
-		expect(result).toBe(42);
-	});
+    const result = asyncMock();
+    expect(result).toBe(42);
+  });
 });
 
 // TODO: what if user will give non existing id

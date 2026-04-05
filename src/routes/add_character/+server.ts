@@ -3,7 +3,6 @@ import { characters } from '$lib/server/db/schema/schema';
 import { error, type RequestHandler } from '@sveltejs/kit';
 import { StatusCodes } from 'http-status-codes';
 
-// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 export const POST: RequestHandler = async ({ request }: { request: Request }) => {
   const formData = await request.formData();
   const firstName = formData.get('firstName');
