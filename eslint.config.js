@@ -4,7 +4,6 @@ import json from '@eslint/json';
 import markdown from '@eslint/markdown';
 import html from '@html-eslint/eslint-plugin';
 import htmlParser from '@html-eslint/parser';
-import panda from '@pandacss/eslint-plugin';
 import stylistic from '@stylistic/eslint-plugin';
 import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
@@ -21,7 +20,6 @@ import promise from 'eslint-plugin-promise';
 import security from 'eslint-plugin-security';
 import sonarjs from 'eslint-plugin-sonarjs';
 import svelte from 'eslint-plugin-svelte';
-import tailwind from 'eslint-plugin-tailwindcss';
 import tsDoc from 'eslint-plugin-tsdoc';
 import unicorn from 'eslint-plugin-unicorn';
 import { fileURLToPath } from 'node:url';
@@ -43,7 +41,6 @@ const jsFlag = true; // Checked
 const jsonFlag = true; // Checked
 const markdownFlag = true; // Checked
 const nodeFlag = true; // Checked
-const pandacssFlag = false;
 const perfectionistFlag = true; // Checked
 // "Turns off all rules that are unnecessary or might conflict with Prettier." (most from stylistic)
 const prettierFlag = true; // Checked
@@ -52,7 +49,6 @@ const securityFlag = true; // Checked
 const sonarjsFlag = true; // Checked
 const stylisticFlag = true; // Checked
 const svelteFlag = true; // Checked
-const tailwindFlag = false;
 const tsDocFlag = true; // Checked
 const typescriptFlag = true; // Checked
 const unicornFlag = true; // Checked
@@ -92,8 +88,6 @@ export default [
 		plugins: {
 			'@typescript-eslint': ts,
 			'@stylistic': stylistic,
-			'@pandacss': panda,
-			tailwind: tailwind,
 			tsDoc: tsDoc,
 			unicorn: unicorn,
 			svelte: svelte,
@@ -818,7 +812,7 @@ export default [
 				'@typescript-eslint/related-getter-setter-pairs': 'error',
 				'@typescript-eslint/prefer-return-this-type': 'error',
 				'@typescript-eslint/no-unsafe-assignment': 'error',
-				
+
 				/* Configurable */
 				'@typescript-eslint/no-inferrable-types': [
 					'error',
@@ -907,7 +901,7 @@ export default [
 				],
 				'@typescript-eslint/prefer-literal-enum-member': 'error',
 				'@typescript-eslint/prefer-nullish-coalescing': 'error',
-				
+
 				'@typescript-eslint/prefer-readonly-parameter-types': [
 					'error',
 					{
@@ -1002,7 +996,7 @@ export default [
 					},
 				],
 				'@typescript-eslint/prefer-readonly': ['error', { onlyInlineLambdas: true }],
-				
+
 				// Disabled for some reason
 				'no-throw-literal': 'off',
 				'@typescript-eslint/only-throw-error': 'off', // Because detect sveltekit errors as bad
@@ -1030,15 +1024,6 @@ export default [
 				'no-dupe-class-members': 'off',
 				'@typescript-eslint/no-dupe-class-members': 'off',
 
-				/* tailwind rules */
-				...(tailwindFlag && {
-					'tailwind/classnames-order': 'error',
-				}),
-
-				/* pandacss rules */
-				...(pandacssFlag && {
-					'@pandacss/file-not-included': 'error',
-				}),
 			}),
 		},
 	},
