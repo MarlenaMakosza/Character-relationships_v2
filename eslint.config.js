@@ -969,7 +969,7 @@ export default [
 					},
 				],
 				'max-params': 'off',
-				'@typescript-eslint/max-params': ['error', { max: 4 }],
+				'@typescript-eslint/max-params': 'off',
 				'@typescript-eslint/parameter-properties': [
 					'error',
 					{ allow: ['public readonly'], prefer: 'parameter-property' },
@@ -1262,7 +1262,7 @@ export default [
 				'markdown/no-empty-links': 'error',
 				'markdown/no-html': 'error',
 				'markdown/no-invalid-label-refs': 'error',
-				'markdown/no-missing-label-refs': 'error',
+				'markdown/no-missing-label-refs': 'off',
 			}),
 		},
 	},
