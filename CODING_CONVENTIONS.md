@@ -109,6 +109,30 @@ Na razie:
 
 ---
 
+## Null & Undefined
+
+- `null` — intentional absence of a value in the business domain:
+  ```ts
+  // user may not have an avatar — that's a valid business state
+  interface User {
+    avatar: string | null;
+  }
+  ```
+
+- `undefined` — uninitialized value or optional field:
+  ```ts
+  interface Config {
+    timeout?: number; // optional, not set yet
+  }
+  ```
+
+- Do **not** use `null` as an error signal — that's what Result pattern is for
+- Do **not** use `undefined` as a return value — use Result instead
+- Do **not** use `any` — always know your type; `unknown` is acceptable when type is truly unknown
+- `strictNullChecks: true` is required in `tsconfig.json`
+
+---
+
 ## Types & Enums
 
 - `interface` for object/class shapes; `type` for unions, aliases, and complex types:
@@ -138,11 +162,11 @@ Enforced by Prettier. Config (`.prettierrc`):
 
 ```json
 {
-  "printWidth": 100,
+  "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
   "semi": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "trailingComma": "es5",
   "bracketSpacing": true
 }
