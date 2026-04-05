@@ -81,7 +81,7 @@ function getDiscount(user: User): number { ... }
 
 Feature-based layout — each feature owns all its files:
 
-```
+```text
 src/
   user/
     user.model.ts
@@ -220,11 +220,11 @@ Rules:
 - Format: **Conventional Commits** (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:` etc.)
 - Language: **English**
 - Single change → one-liner:
-  ```
+  ```text
   feat: add user discount calculation
   ```
 - Multiple changes → with body:
-  ```
+  ```text
   feat: add user discount calculation
 
   Trial users treated as premium for first 30 days.

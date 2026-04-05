@@ -175,7 +175,7 @@ const PersonSchema = z.object({
 - Nieaktywny jeśli formularz całkowicie pusty
 
 ### Przy próbie zapisu pustej postaci
-```
+```text
 Error Dialog:
 "Nie można zapisać postaci"
 "Brak danych. Proszę wprowadzić jakieś informacje o postaci lub anulować edycję."

@@ -107,7 +107,7 @@ function getDefaultPriority(role: string): number {
 ```
 
 **Wyświetlenie:**
-```
+```text
 Dr. Jan Paweł Maria Kowalski Jr., King of Poland, Stormborn
 │   │   │     │     │         │    │              │
 5   10  11    11    20        25   30             40
@@ -134,7 +134,7 @@ Dr. Jan Paweł Maria Kowalski Jr., King of Poland, Stormborn
 ```
 
 **Wyświetlenie (sortowane po priority):**
-```
+```text
 Daenerys Targaryen, Khaleesi, Queen of the Andals and the First Men, Stormborn, Mother of Dragons, The Unburnt, Breaker of Chains
 ```
 
