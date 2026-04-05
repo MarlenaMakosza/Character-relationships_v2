@@ -21,6 +21,8 @@
     "lint": "eslint --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "ts-check": "tsc",
+    "commit": "cz",
+    "validate": "npm run lint && npm run check && npm run ts-check && npm run test",
     "format": "prettier . --write --cache --log-level warn",
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer",
     "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",
@@ -52,6 +54,7 @@
     "commitlint": "^20.5.0",
     "commitlint-plugin-function-rules": "^4.3.2",
     "cspell": "^9.8.0",
+    "cz-conventional-changelog": "^3.3.0",
     "d3-graphviz": "^5.6.0",
     "dotenv": "^17.4.0",
     "dotenv-expand": "^12.0.3",
@@ -60,8 +63,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-drizzle": "^0.2.3",
-    "eslint-plugin-functional": "^9.0.4",
     "eslint-plugin-eslint-plugin": "^7.3.2",
+    "eslint-plugin-functional": "^9.0.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-import-alias": "^1.2.0",
     "eslint-plugin-n": "^17.24.0",
@@ -108,5 +111,10 @@
       "prettier --write",
       "stylelint --fix"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
