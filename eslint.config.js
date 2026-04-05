@@ -1,3 +1,4 @@
+// @ts-nocheck — config file, many ESLint plugins lack type declarations
 import cspell from '@cspell/eslint-plugin';
 import js from '@eslint/js';
 import json from '@eslint/json';
@@ -160,8 +161,9 @@ export default [
 			}),
 			/* Svelte rules */
 			...(svelteFlag && {
-				...svelte.configs.recommended.rules,
-				...svelte.configs.prettier.rules,
+				// svelte.configs.recommended and .prettier are FlatConfig[] arrays in v3.x — merge rules from all entries
+				...Object.assign({}, ...svelte.configs.recommended.map((c) => c.rules ?? {})),
+				...Object.assign({}, ...svelte.configs.prettier.map((c) => c.rules ?? {})),
 				// Possible Errors
 				'svelte/infinite-reactive-loop': 'error',
 				'svelte/no-dom-manipulating': 'error',
@@ -703,13 +705,13 @@ export default [
 				'@stylistic/quotes': [
 					'error',
 					'single',
-					{ allowTemplateLiterals: true, avoidEscape: true },
+					{ allowTemplateLiterals: 'always', avoidEscape: true },
 				],
 				'@stylistic/semi': ['error', 'always'],
 				'@stylistic/function-call-spacing': ['error', 'never'],
 				'@stylistic/function-call-argument-newline': ['error', 'consistent'],
 				'@stylistic/jsx-self-closing-comp': 'error',
-				'@stylistic/jsx-props-no-multi-spaces': 'error',
+				'@stylistic/no-multi-spaces': 'error',
 				'@stylistic/newline-per-chained-call': ['error', { ignoreChainWithDepth: 3 }],
 				'@stylistic/object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
 				'@stylistic/switch-colon-spacing': ['error', { after: true, before: false }],
@@ -1031,6 +1033,16 @@ export default [
 		// svelte-eslint-parser v1.x no longer delegates non-svelte files to the inner parser
 		name: 'TypeScript parser override',
 		files: ['**/*.{ts,tsx,js,jsx,cjs,mjs}'],
+		ignores: [
+			'node_modules/**',
+			'build/**',
+			'.svelte-kit/**',
+			'svelte.config.js',
+			'eslint.config.js',
+			'commitlint.config.js',
+			'drizzle.config.ts',
+			'docs/**',
+		],
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
@@ -1195,28 +1207,29 @@ export default [
 			parser: htmlParser,
 		},
 		plugins: {
-			'@html-eslint': html,
+			// @html-eslint/eslint-plugin v0.58+ changed plugin key from '@html-eslint' to 'html'
+			'html': html,
 		},
 		rules: {
 			...(htmlFlag && {
 				...html.configs.recommended.rules,
-				'@html-eslint/indent': ['error', 'tab'],
-				'@html-eslint/no-extra-spacing-attrs': 'off',
-				'@html-eslint/require-closing-tags': ['error', { selfClosing: 'always' }],
-				'@html-eslint/require-meta-charset': 'error',
-				'@html-eslint/lowercase': 'error',
-				'@html-eslint/require-input-label': 'error',
-				'@html-eslint/require-explicit-size': 'error',
-				'@html-eslint/no-trailing-spaces': 'error',
-				'@html-eslint/no-extra-spacing-text': 'error',
-				'@html-eslint/require-meta-description': 'error',
-				'@html-eslint/require-frame-title': 'error',
-				'@html-eslint/no-non-scalable-viewport': 'error',
-				'@html-eslint/no-target-blank': 'error',
-				'@html-eslint/require-button-type': 'error',
-				'@html-eslint/no-heading-inside-button': 'error',
-				'@html-eslint/require-form-method': 'error',
-				'@html-eslint/sort-attrs': 'error',
+				'html/indent': ['error', 2],
+				'html/no-extra-spacing-attrs': 'off',
+				'html/require-closing-tags': ['error', { selfClosing: 'always' }],
+				'html/require-meta-charset': 'error',
+				'html/lowercase': 'error',
+				'html/require-input-label': 'error',
+				'html/require-explicit-size': 'error',
+				'html/no-trailing-spaces': 'error',
+				'html/no-extra-spacing-text': 'error',
+				'html/require-meta-description': 'error',
+				'html/require-frame-title': 'error',
+				'html/no-non-scalable-viewport': 'error',
+				'html/no-target-blank': 'error',
+				'html/require-button-type': 'error',
+				'html/no-heading-inside-button': 'error',
+				'html/require-form-method': 'error',
+				'html/sort-attrs': 'error',
 			}),
 		},
 	},
