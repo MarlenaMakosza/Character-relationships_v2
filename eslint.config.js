@@ -673,7 +673,7 @@ export default [
 						before: false,
 					},
 				],
-				'@stylistic/indent': ['error', 'tab'],
+				'@stylistic/indent': ['error', 2],
 				'@stylistic/keyword-spacing': [
 					'error',
 					{
@@ -1025,6 +1025,18 @@ export default [
 				'@typescript-eslint/no-dupe-class-members': 'off',
 
 			}),
+		},
+	},
+	{
+		// svelte-eslint-parser v1.x no longer delegates non-svelte files to the inner parser
+		name: 'TypeScript parser override',
+		files: ['**/*.{ts,tsx,js,jsx,cjs,mjs}'],
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				project: './tsconfig.json',
+				tsconfigRootDir: import.meta.dirname,
+			},
 		},
 	},
 	{
