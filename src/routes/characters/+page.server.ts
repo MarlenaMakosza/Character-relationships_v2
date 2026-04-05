@@ -9,14 +9,14 @@ import { StatusCodes } from 'http-status-codes';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const characters: Characters = await CharacterRepository.getCharacters();
-	if (characters.charactersArray.length == EMPTY) {
-		throw error(StatusCodes.NOT_FOUND, { message: 'Characters not found' });
-	}
+  const characters: Characters = await CharacterRepository.getCharacters();
+  if (characters.charactersArray.length == EMPTY) {
+    throw error(StatusCodes.NOT_FOUND, { message: 'Characters not found' });
+  }
 
-	const serializedCharacters = CharacterFormatter.toPOJOs(characters.charactersArray);
+  const serializedCharacters = CharacterFormatter.toPOJOs(characters.charactersArray);
 
-	return {
-		characters: serializedCharacters,
-	};
+  return {
+    characters: serializedCharacters,
+  };
 };

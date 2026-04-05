@@ -8,12 +8,12 @@ import { StatusCodes } from 'http-status-codes';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const characters: Characters = await CharacterRepository.getCharacters();
-	if (characters.charactersArray.length == EMPTY) {
-		throw error(StatusCodes.NOT_FOUND, { message: 'Characters not found' });
-	}
+  const characters: Characters = await CharacterRepository.getCharacters();
+  if (characters.charactersArray.length == EMPTY) {
+    throw error(StatusCodes.NOT_FOUND, { message: 'Characters not found' });
+  }
 
-	return {
-		characters: structuredClone(characters.charactersArray),
-	};
+  return {
+    characters: structuredClone(characters.charactersArray),
+  };
 };

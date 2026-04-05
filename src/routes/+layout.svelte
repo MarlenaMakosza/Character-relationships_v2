@@ -3,4 +3,4 @@
 </script>
 
 <Navigate />
-<slot />
+<slot></slot>

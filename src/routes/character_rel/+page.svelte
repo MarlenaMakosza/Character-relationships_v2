@@ -14,15 +14,15 @@
 
 	// Helper functions
 	function getRelationsForCharacter(characterId: number): IRelation[] {
-		return relations.filter((rel: Readonly<IRelation>) => rel.idChar1 === characterId);
+	  return relations.filter((rel: Readonly<IRelation>) => rel.idChar1 === characterId);
 	}
 
 	function getRelatedCharacter(relatedCharacterId: number): ICharacter[] {
-		return characters.filter((char: Readonly<ICharacter>) => char.id === relatedCharacterId);
+	  return characters.filter((char: Readonly<ICharacter>) => char.id === relatedCharacterId);
 	}
 
 	onMount(() => {
-		renderGraph(relations);
+	  renderGraph(relations);
 	});
 </script>
 

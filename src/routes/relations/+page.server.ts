@@ -9,15 +9,15 @@ import { error } from '@sveltejs/kit';
 import { StatusCodes } from 'http-status-codes';
 
 export const load = async (): Promise<{ relations: IRelation[] }> => {
-	const relations: Relationships = await RelationRepository.getRelations();
-	if (relations.relationsArray.length === EMPTY) {
-		throw error(StatusCodes.NOT_FOUND, { message: 'Relations not found' });
-	}
-	const serializedRelations: IRelation[] = RelationshipFormatter.toPOJOs(relations.relationsArray);
+  const relations: Relationships = await RelationRepository.getRelations();
+  if (relations.relationsArray.length === EMPTY) {
+    throw error(StatusCodes.NOT_FOUND, { message: 'Relations not found' });
+  }
+  const serializedRelations: IRelation[] = RelationshipFormatter.toPOJOs(relations.relationsArray);
 
-	return {
-		relations: serializedRelations,
-	};
+  return {
+    relations: serializedRelations,
+  };
 };
 
 //

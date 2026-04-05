@@ -5,25 +5,25 @@ import { StatusCodes } from 'http-status-codes';
 
 // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 export const POST: RequestHandler = async ({ request }: { request: Request }) => {
-	const formData = await request.formData();
-	const firstName = formData.get('firstName');
-	const lastName = formData.get('lastName');
-	const age = formData.get('age');
+  const formData = await request.formData();
+  const firstName = formData.get('firstName');
+  const lastName = formData.get('lastName');
+  const age = formData.get('age');
 
-	if (typeof firstName !== 'string' || typeof lastName !== 'string') {
-		throw new TypeError('Invalid form data');
-	}
+  if (typeof firstName !== 'string' || typeof lastName !== 'string') {
+    throw new TypeError('Invalid form data');
+  }
 
-	if (!firstName || !lastName) {
-		throw error(StatusCodes.NOT_FOUND, { message: 'Missing character name' });
-	}
-	// TODO: One any properties is required - whatever which one
+  if (!firstName || !lastName) {
+    throw error(StatusCodes.NOT_FOUND, { message: 'Missing character name' });
+  }
+  // TODO: One any properties is required - whatever which one
 
-	await db.insert(characters).values({
-		firstName,
-		lastName,
-		age,
-	});
+  await db.insert(characters).values({
+    firstName,
+    lastName,
+    age,
+  });
 
-	return new Response('Character added successfully', { status: 200 });
+  return new Response('Character added successfully', { status: 200 });
 };

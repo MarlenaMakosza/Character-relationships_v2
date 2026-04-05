@@ -10,28 +10,28 @@
 
 	// eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
 	const handleSubmit = async (event: Event): Promise<void> => {
-		event.preventDefault();
+	  event.preventDefault();
 
-		if (!firstName || !lastName) {
-			errorMessage = 'Both fields are required.';
+	  if (!firstName || !lastName) {
+	    errorMessage = 'Both fields are required.';
 
-			return;
-		}
+	    return;
+	  }
 
-		const formData = new FormData();
-		formData.append('firstName', firstName);
-		formData.append('lastName', lastName);
-		formData.append('age', age);
-		const response = await fetch('/add_character', {
-			method: 'POST',
-			body: formData,
-		});
+	  const formData = new FormData();
+	  formData.append('firstName', firstName);
+	  formData.append('lastName', lastName);
+	  formData.append('age', age);
+	  const response = await fetch('/add_character', {
+	    method: 'POST',
+	    body: formData,
+	  });
 
-		if (response.ok) {
-			await goto(`${base}/characters`, { replaceState: true });
-		} else {
-			console.error('Error adding character. Please try again.');
-		}
+	  if (response.ok) {
+	    await goto(`${base}/characters`, { replaceState: true });
+	  } else {
+	    console.error('Error adding character. Please try again.');
+	  }
 	};
 </script>
 
