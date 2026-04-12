@@ -55,7 +55,7 @@ const typescriptFlag = true; // Checked
 const unicornFlag = true; // Checked
 const vitestFlag = true; // Checked (almost, I check it when I write tests, I promise)
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
+// const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default [
   prettier,
@@ -1103,7 +1103,7 @@ export default [
             fixable: false,
           },
         ],
-        'vitest/no-hooks': 'error',
+        'vitest/no-hooks': 'off',
         'vitest/no-identical-title': 'error',
         'vitest/no-import-node-test': 'error',
         'vitest/no-interpolation-in-snapshots': 'error',
