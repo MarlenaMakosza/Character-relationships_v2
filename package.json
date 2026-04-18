@@ -5,31 +5,32 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "spellcheck": "cspell --no-progress --dot \"**/*.{js,ts,jsx,tsx,cjs,mjs,json,html,xml,svg,css,scss,sass,md}\"",
+    "validate": "npm run lint && npm run check && npm run ts-check && npm run test",
     "db:start": "docker compose up",
     "db:sync": "npm run db:generate && npm run db:migrate",
+    "db:studio": "drizzle-kit studio",
+
+    "preview": "vite preview",
+    "autofix": "npm run lint:fix && npm run format",
+    "commit": "cz",
     "db:bulk": "drizzle-kit push",
     "db:checkmighistory": "drizzle-kit check",
-    "db:studio": "drizzle-kit studio",
-    "db:generate": "bash -c 'drizzle-kit generate --name \"$(date +%Y%m%d_%H%M%S)\"'",
-    "db:migrate": "drizzle-kit migrate",
-    "test:unit": "vitest",
-    "test": "npm run test:unit -- --run",
-    "prepare": "husky",
-    "commitlint": "commitlint --edit",
-    "autofix": "npm run lint:fix && npm run format",
+    "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",
+    "clean": "rimraf node_modules coverage dist package-lock.json",
+
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "ts-check": "tsc",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
-    "ts-check": "tsc",
-    "commit": "cz",
-    "validate": "npm run lint && npm run check && npm run ts-check && npm run test",
     "format": "prettier . --write --cache --log-level warn",
+    "spellcheck": "cspell --no-progress --dot \"**/*.{js,ts,jsx,tsx,cjs,mjs,json,html,xml,svg,css,scss,sass,md}\"",
+    "test": "npm run test:unit -- --run",
+    "test:unit": "vitest",
+    "db:generate": "bash -c 'drizzle-kit generate --name \"$(date +%Y%m%d_%H%M%S)\"'",
+    "db:migrate": "drizzle-kit migrate",
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer",
-    "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",
-    "clean": "rimraf node_modules coverage dist package-lock.json"
+    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -109,8 +110,7 @@
       "spellcheck"
     ],
     "*.css": [
-      "prettier --write",
-      "stylelint --fix"
+      "prettier --write"
     ]
   },
   "config": {
