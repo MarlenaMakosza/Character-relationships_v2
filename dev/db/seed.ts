@@ -2,18 +2,21 @@ import { faker } from "@faker-js/faker";
 import { parse } from "dotenv";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { readFileSync } from "node:fs";
-import path from "node:path";
 import postgres from "postgres";
 
 import { characters, relations } from "../../src/lib/server/db/schema/schema.ts";
 
-const env = parse(readFileSync(path.resolve(process.cwd(), ".env")));
-if (!("DATABASE_URL" in env)) throw new Error("DATABASE_URL not found in .env!");
+const env = parse(readFileSync(".env"));
+if (!("DATABASE_URL" in env)) {
+  throw new Error("DATABASE_URL not found in .env!");
+}
 
 const CONNECTION_LIMIT = 1;
+const TIMEOUT_INTERVAL = 10;
 const connection = postgres(env.DATABASE_URL, {
   max: CONNECTION_LIMIT,
-  onnotice: env.DB_SEEDING ? () => {} : undefined,
+  idle_timeout: TIMEOUT_INTERVAL,
+  connect_timeout: TIMEOUT_INTERVAL,
 });
 
 const db = drizzle(connection, { casing: "snake_case", logger: true });
