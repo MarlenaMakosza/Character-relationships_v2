@@ -7,9 +7,7 @@ import postgres from "postgres";
 import { characters, relations } from "../../src/lib/server/db/schema/schema.ts";
 
 const env = parse(readFileSync(".env"));
-if (!("DATABASE_URL" in env)) {
-  throw new Error("DATABASE_URL not found in .env!");
-}
+if (!("DATABASE_URL" in env)) throw new Error("DATABASE_URL not found in .env!");
 
 const CONNECTION_LIMIT = 1;
 const TIMEOUT_INTERVAL = 10;
