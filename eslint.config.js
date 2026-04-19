@@ -1046,6 +1046,22 @@ export default [
     },
   },
   {
+    name: 'Dev scripts',
+    files: ['dev/**/*.ts'],
+    rules: {
+      // Scripts run once in CLI context — sync I/O is fine, no event loop to block
+      'node/no-sync': 'off',
+      // Path is developer-controlled, not user input — no injection risk
+      'security/detect-non-literal-fs-filename': 'off',
+      // Dev scripts import from src directly — $lib alias not resolvable outside bundler
+      'alias/import-alias': 'off',
+      // Seed intentionally deletes all rows — that's the point
+      'drizzle/enforce-delete-with-where': 'off',
+      // onnotice callback must be empty to suppress PG notices
+      '@typescript-eslint/no-empty-function': 'off',
+    },
+  },
+  {
     name: 'Tests',
     plugins: {
       js: js,
