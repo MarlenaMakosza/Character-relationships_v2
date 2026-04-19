@@ -652,6 +652,7 @@ export default [
         'unicorn/error-message': 'error',
         // Disabled: `null` is standard in databases, APIs, and explicit absence of value is clearer than `undefined`.
         'unicorn/no-null': 'off',
+        'unicorn/no-array-callback-reference': 'off',
       }),
 
       ...(stylisticFlag && {
