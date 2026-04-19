@@ -8,5 +8,12 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_DB: local
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d local"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
 volumes:
   pgdata:
