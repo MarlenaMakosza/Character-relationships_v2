@@ -1,10 +1,10 @@
 CREATE TABLE "characters" (
-	"id" uuid PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text
 );
 --> statement-breakpoint
 CREATE TABLE "relations" (
-	"id" serial PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"id_char_1" uuid,
 	"id_char_2" uuid,
 	"about" text NOT NULL
