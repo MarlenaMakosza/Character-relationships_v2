@@ -9,6 +9,8 @@
     "db:start": "docker compose up",
     "db:sync": "npm run db:generate && npm run db:migrate",
     "db:studio": "drizzle-kit studio",
+		"firstrun:dev": "npm install && npm run check && docker compose up --detach --wait && npm run db:sync && npm run seed",
+		"seed": "node ./dev/db/seed.ts",
 
     "preview": "vite preview",
     "autofix": "npm run lint:fix && npm run format",
@@ -28,7 +30,7 @@
     "test": "npm run test:unit -- --run",
     "test:unit": "vitest",
     "db:generate": "bash -c 'drizzle-kit generate --name \"$(date +%Y%m%d_%H%M%S)\"'",
-    "db:migrate": "drizzle-kit migrate",
+    "db:migrate": "node ./dev/db/migrate.ts",
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer",
     "commitlint": "commitlint --edit"
   },
