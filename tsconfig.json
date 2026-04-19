@@ -12,7 +12,8 @@
     "strictNullChecks": true,
     "moduleResolution": "bundler",
     "noImplicitReturns": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*", "tests/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts", "drizzle.config.ts"]
+  "include": ["src/**/*", "tests/**/*", "dev/**/*", "vitest-setup-client.ts", "vite.config.ts", "vitest.config.ts", "drizzle.config.ts"]
 }
