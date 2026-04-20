@@ -9,7 +9,7 @@
     "db:start": "docker compose up",
     "db:sync": "npm run db:generate && npm run db:migrate",
     "db:studio": "drizzle-kit studio",
-    "firstrun:dev": "npm install && npm run check && docker compose up --detach --wait && npm run db:sync && npm run seed",
+    "firstrun:dev": "npm install && npm run check && docker compose up --detach --wait && npm run db:sync && npm run seed:dev",
     "seed:dev": "node ./dev/db/seed.ts",
     "preview": "vite preview",
     "autofix": "npm run lint:fix && npm run format",
