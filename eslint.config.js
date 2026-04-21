@@ -626,6 +626,7 @@ export default [
         'perfectionist/sort-objects': 'off',
         'perfectionist/sort-classes': 'off',
         'perfectionist/sort-object-types': 'off',
+        'perfectionist/sort-modules': 'off',
       }),
 
       /* Unicorn rules */
