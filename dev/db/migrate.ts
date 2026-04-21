@@ -10,6 +10,7 @@ if (!("DATABASE_URL" in env)) throw new Error("DATABASE_URL not found in .env!")
 
 const CONNECTION_LIMIT = 1;
 const connection = postgres(env.DATABASE_URL, { max: CONNECTION_LIMIT });
+// TODO: co jeśli connectiona nie ma
 const db = drizzle(connection);
 
 await migrate(db, { migrationsFolder: "./dev/drizzle" });
