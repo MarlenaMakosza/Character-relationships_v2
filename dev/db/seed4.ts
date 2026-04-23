@@ -21,9 +21,8 @@ const connection = postgres(env.DATABASE_URL, {
 
 const db = drizzle(connection, { casing: 'snake_case', logger: true });
 
-const CHARACTER_COUNT = 1;
+const CHARACTER_COUNT = 10;
 const RELATION_COUNT = 15;
-// const PAIR = 2;
 const RELATION_TYPES = ['Friend', 'Enemy', 'Married', 'Sibling', 'Subject', 'Ally'];
 
 await db.delete(relations);
@@ -37,13 +36,6 @@ const seededCharacters = await db
     })),
   )
   .returning();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Length<T extends readonly any[]> = T['length'];
-type CharLength = Length<CharacterPair>;
-
-const x: CharLength = 2;
-console.log(x);
-
 interface TupleOfLength<T> {
   // eslint-disable-next-line @typescript-eslint/no-magic-numbers
   2: [T, T];
