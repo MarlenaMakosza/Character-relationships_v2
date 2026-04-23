@@ -37,7 +37,7 @@ const seededCharacters = await db
   )
   .returning();
 interface TupleOfLength<T> {
-  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- It isn't magic number, because it is defined of specific type, where 2 is one of option
   2: [T, T];
 }
 const PAIR = 2;
@@ -49,7 +49,7 @@ await db.insert(relations).values(
     if (seededCharacters.length < PAIR) {
       throw new Error(`Not enough data to create a Pair in seededCharacters. Minimum required is ${PAIR} but seededCharacters has ${seededCharacters.length}!`);
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion -- Bullshit, because this is that type?
     const charInPair = faker.helpers.arrayElements(seededCharacters, PAIR) as CharacterPair;
 
     return {

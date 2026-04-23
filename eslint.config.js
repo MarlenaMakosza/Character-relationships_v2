@@ -10,6 +10,7 @@ import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import vitest from '@vitest/eslint-plugin';
 import prettier from 'eslint-config-prettier';
+import eslintComments from 'eslint-plugin-eslint-comments';
 import drizzle from 'eslint-plugin-drizzle';
 import esEs from 'eslint-plugin-eslint-plugin';
 import functional from 'eslint-plugin-functional';
@@ -33,6 +34,7 @@ import svelteParser from 'svelte-eslint-parser';
 const aliasFlag = true; // Checked
 const cspellFlag = true; // Checked
 const drizzleFlag = true; // Checked
+const eslintCommentsFlag = true; // Checked
 const esEsFlag = true; // Checked
 const esImportFlag = true; // Checked
 // Recommend when you only use functional programming, or you have separate space for functional code in project
@@ -98,6 +100,7 @@ export default [
       sonarjs: sonarjs,
       promise: promise,
       drizzle: drizzle,
+      'eslint-comments': eslintComments,
       import: esImport,
       security: security,
       alias: alias,
@@ -244,6 +247,12 @@ export default [
         'promise/prefer-await-to-then': 'error',
         'promise/prefer-catch': 'error',
         'promise/spec-only': 'error',
+      }),
+
+      /* eslint-comments rules */
+      ...(eslintCommentsFlag && {
+        'eslint-comments/require-description': 'error',
+        'eslint-comments/no-unused-disable': 'error',
       }),
 
       /* drizzle rules */

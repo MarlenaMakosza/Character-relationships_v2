@@ -45,7 +45,7 @@ await db.insert(relations).values(
   Array.from({ length: RELATION_COUNT }, () => {
     const charInPair = toPair(
       faker.helpers
-        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- test
         .arrayElements(seededCharacters, 2 satisfies CharacterPair['length'])
         .map(toCharacter),
     );
