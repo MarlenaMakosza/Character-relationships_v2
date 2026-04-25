@@ -60,7 +60,7 @@ Aplikacja śledzi szczegółowe informacje o każdej postaci, w tym:
 - Baza danych: PostgreSQL
 - ORM: Drizzle
 - Walidacja: Zod
-- Wizualizacja grafów: Graphviz (stabilna), D3.js (eksperymentalna)
+- Wizualizacja grafów: Cytoscape.js
 - Export PDF: pdfmake
 - Import/Export danych: JSON, CSV, PDF
 - Typ aplikacji: Jednoużytkownikowa (wieloużytkownikowa + autentykacja w przyszłości)

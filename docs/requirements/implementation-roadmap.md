@@ -101,16 +101,16 @@
 - [ ] URLs/Citations/Sources
 - [ ] UI dla zarządzania media i notatkami
 
-## Sprint 9: Visualization - Graphviz (2-3 tygodnie)
+## Sprint 9: Visualization - Cytoscape.js (2-3 tygodnie)
 
 **Cel:** Wizualizacja relacji grafem
 
-- [ ] Generowanie DOT notation z danych
-- [ ] Integracja Graphviz (backend lub client-side)
-- [ ] Renderowanie grafu SVG
+- [ ] Integracja Cytoscape.js
+- [ ] Renderowanie full graph (read-only, 2k+ nodes)
+- [ ] Subgraph view (edytowalny, ~50 nodes)
 - [ ] Podstawowe style i kolory
 - [ ] Filtering grafu (po typach relacji, tagach)
-- [ ] Zoom i pan dla dużych grafów
+- [ ] Zoom i pan
 - [ ] Export grafu do SVG/PNG
 
 ## Sprint 10: Export/Import - JSON/CSV (2 tygodnie)
@@ -169,16 +169,14 @@
 - [ ] Animations/transitions
 - [ ] Keyboard shortcuts
 
-## Sprint 15: D3.js Visualization (Eksperymentalny) (2-3 tygodnie)
+## Sprint 15: Visualization — advanced (Eksperymentalny) (2-3 tygodnie)
 
-**Cel:** Alternatywna wizualizacja z D3.js
+**Cel:** Zaawansowane funkcje wizualizacji
 
-- [ ] Podstawowy force-directed graph
-- [ ] Interaktywność (drag & drop, zoom)
-- [ ] Grupowanie po typach relacji
+- [ ] Grupowanie węzłów po typach relacji
 - [ ] Kolorowanie węzłów (po tagach/atrybutach)
-- [ ] Toggle między Graphviz a D3.js
-- [ ] Performance optimization dla dużych grafów
+- [ ] Wykrywanie wzorców (trójkąty, cykle)
+- [ ] Performance optimization dla 2k+ nodes
 
 ## Sprint 16: Testing & Bug Fixes (1-2 tygodnie)
 
