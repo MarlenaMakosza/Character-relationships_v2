@@ -2,7 +2,7 @@ import { pgTable, text, uuid } from 'drizzle-orm/pg-core';
 
 export const characters = pgTable('characters', {
   id: uuid('id').primaryKey().defaultRandom(),
-  name: text('name'),
+  name: text('name').notNull(),
 });
 
 export const relations = pgTable('relations', {
