@@ -14,7 +14,7 @@ import eslintComments from 'eslint-plugin-eslint-comments';
 import drizzle from 'eslint-plugin-drizzle';
 import esEs from 'eslint-plugin-eslint-plugin';
 import functional from 'eslint-plugin-functional';
-import esImport from 'eslint-plugin-import';
+import esImport from 'eslint-plugin-import-x';
 import alias from 'eslint-plugin-import-alias';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -60,6 +60,7 @@ const vitestFlag = true; // Checked (almost, I check it when I write tests, I pr
 // const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default [
+  { ignores: ['node_modules/**'] },
   prettier,
   {
     name: 'Main ruleset',
@@ -101,7 +102,7 @@ export default [
       promise: promise,
       drizzle: drizzle,
       'eslint-comments': eslintComments,
-      import: esImport,
+      'import-x': esImport,
       security: security,
       alias: alias,
       node: node,
@@ -109,7 +110,7 @@ export default [
       vitest: vitest,
     },
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: {
           alwaysTryTypes: true,
         },
@@ -348,21 +349,24 @@ export default [
 
       /* import rules */
       ...(esImportFlag && {
-        'import/named': 'error',
-        'import/default': 'error',
-        'import/no-named-as-default': 'error',
-        'import/no-anonymous-default-export': 'error',
-        'import/no-duplicates': 'error',
-        'import/no-absolute-path': 'error',
-        'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
+        // These rules parse the source of imported modules; import-x uses the
+        // importing file's parser (svelte-eslint-parser for .svelte) which
+        // cannot parse .mjs from node_modules. TS already validates all three.
+        'import-x/named': 'off',
+        'import-x/default': 'off',
+        'import-x/no-named-as-default': 'off',
+        'import-x/no-anonymous-default-export': 'error',
+        'import-x/no-duplicates': 'error',
+        'import-x/no-absolute-path': 'error',
+        'import-x/no-useless-path-segments': ['error', { noUselessIndex: true }],
 
         // Useless
-        'import/extensions': 'off',
-        'import/no-restricted-paths': 'off',
-        'import/order': 'off',
-        'import/no-mutable-exports': 'off',
-        'import/no-unresolved': 'off', //"If you're using a module bundler other than Node or Webpack, you may end up with a lot of false positive reports of missing dependencies."
-        'import/no-extraneous-dependencies': 'off',
+        'import-x/extensions': 'off',
+        'import-x/no-restricted-paths': 'off',
+        'import-x/order': 'off',
+        'import-x/no-mutable-exports': 'off',
+        'import-x/no-unresolved': 'off',
+        'import-x/no-extraneous-dependencies': 'off',
       }),
       /* functional rules */
       ...(functionalFlag && {
