@@ -7,16 +7,7 @@ import postgres from 'postgres';
 import type { TupleOfLength } from '../faker-augmentation.d.ts';
 
 import { characters, relations } from '../../src/lib/server/db/schema/schema.ts';
-
-function assertNumberEquals<L extends number>(
-  value: unknown,
-  expected: L,
-  message?: string
-): asserts value is L {
-  if (typeof value === 'number' || value != expected) {
-    throw new Error(message ?? `Expected ${expected}, got ${String(value)}`);
-  }
-}
+import { assertNumberEquals } from '../assertions.ts';
 
 const env = parse(readFileSync('.env'));
 if (!('DATABASE_URL' in env)) throw new Error('DATABASE_URL not found in .env!');
@@ -53,13 +44,15 @@ try {
 
   const GROUP_SIZE = 2;
   type CharacterPair = TupleOfLength<SeededCharacter, typeof GROUP_SIZE>;
-// todo: think about assertion
-  if (seededCharacters.length < GROUP_SIZE) {
-    throw new Error(
-      `Not enough data to create a Pair in seededCharacters. Minimum required is ${GROUP_SIZE}
-      but seededCharacters has ${seededCharacters.length}!`,
-    );
-  }
+
+  assertNumberEquals(
+    GROUP_SIZE,
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- the code below works only for GROUP_SIZE=2.
+    2,
+    `Not enough data to create a Group in seededCharacters. Minimum required is ${GROUP_SIZE}
+  //     but seededCharacters has ${seededCharacters.length}!`,
+  );
+
   type RelationInsert = typeof relations.$inferInsert;
 
   assertNumberEquals(
