@@ -1,34 +1,65 @@
+---
+status: accepted
+date: 2026-04-25
+---
+
 # ADR-003: Relation Schema Rules
 
-## Context
-The `relations` table needs rules for four edge cases: whether a relation can point in one
-direction only, whether a character can relate to itself, whether two characters can hold
-multiple simultaneous relations, and how to prevent silent duplicates for symmetric
-relations stored in either order.
+## Context and Problem Statement
 
-## Decision
-We will apply the following rules to the `relations` table:
+The `relations` table requires explicit rules for four edge cases that arise from the
+narrative domain: whether a relation can be one-way, whether a character can relate to
+itself, whether two characters can hold multiple simultaneous relations, and how to prevent
+silent duplicates when a symmetric relation is inserted in either column order.
 
-- **Directionality:** each relation carries an `isDirected: boolean` flag. Directed relations
-  have a meaningful source (`idChar1`) and target (`idChar2`). Undirected relations are symmetric.
-- **Self-relation:** allowed. No constraint prevents `idChar1 = idChar2`.
-- **Multiple relations per pair:** allowed. Two characters may simultaneously hold any number
-  of distinct relations (e.g. siblings and enemies).
-- **Undirected duplicate prevention:** the app layer normalizes insert order
-  (`idChar1 < idChar2` lexicographically) when `isDirected = false`. A partial unique index
-  on `(idChar1, idChar2, about)` WHERE `is_directed = false` enforces this at the database level.
+## Decision Drivers
 
-## Status
-Accepted
+* Narrative relationships can be one-way (A loves B, B doesn't) or symmetric (friends)
+* Characters can relate to themselves (e.g. self-marriage is legally valid in some countries)
+* Two characters can simultaneously hold multiple distinct relations (siblings + enemies)
+* Symmetric relations stored in reverse column order represent the same relationship
 
-## Alternatives considered
-- **Raw SQL functional index** (`LEAST`/`GREATEST`) — enforces order at DB level without app
-  normalization, but requires a raw SQL migration outside Drizzle DSL; deferred until necessary
-- **Unique constraint on all pairs** — would block legitimate multiple relations between same pair
+## Considered Options
 
-## Consequences
-- `isDirected` must be set explicitly on every insert; defaults to `false`
-- App layer must normalize `idChar1`/`idChar2` order before every undirected insert
-- Self-relations render as loops in Cytoscape.js — must be handled in graph styling
-- Partial unique index only covers undirected; directed duplicates (`A→B "loves"` twice) are
-  currently not prevented
+* `isDirected` boolean flag per relation + app-layer order normalization
+* Separate tables for directed and undirected relations
+* Always directed — normalize all relations as directed edges
+
+## Decision Outcome
+
+Chosen option: **`isDirected` flag + app-layer normalization**, because it keeps a single
+table while covering all cases, and partial unique index enforcement requires no raw SQL.
+
+### Consequences
+
+* Good, because one table covers directed, undirected, and self-relations
+* Good, because multiple relations per pair are allowed — no unique constraint on `(idChar1, idChar2)`
+* Bad, because app layer must normalize column order before every undirected insert (`idChar1 < idChar2` lexicographically)
+* Bad, because directed duplicates (A→B "loves" inserted twice) are not currently prevented
+* Neutral, because self-relations render as loops in Cytoscape.js and require explicit graph styling
+
+### Confirmation
+
+Inserting `(B, A, "friends", false)` after `(A, B, "friends", false)` throws a unique
+constraint violation. Inserting a self-relation (`idChar1 = idChar2`) succeeds without error.
+
+## Pros and Cons of the Options
+
+### `isDirected` flag + app-layer normalization
+
+* Good, because single table for all relation types
+* Good, because Drizzle DSL supports partial unique index — no raw SQL migration needed
+* Bad, because app layer must always normalize insert order for undirected relations
+* Bad, because directed duplicates remain unprotected
+
+### Separate tables (directed / undirected)
+
+* Good, because constraints are cleanly separated per table
+* Bad, because queries joining both types become more complex
+* Bad, because adding a new relation type may require a new table
+
+### Always directed
+
+* Good, because simplest schema — no flag needed
+* Bad, because symmetric relations (friends, siblings) require two rows per pair
+* Bad, because query logic must always handle both directions for undirected semantics
