@@ -4,7 +4,7 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import { readFileSync } from 'node:fs';
 import postgres from 'postgres';
 
-import type { TupleOfLength } from '../faker-augmentation.d.ts';
+import type { TupleOfLength } from '../utils/tuple.ts';
 
 import { characters, relations } from '../../src/lib/server/db/schema/schema.ts';
 

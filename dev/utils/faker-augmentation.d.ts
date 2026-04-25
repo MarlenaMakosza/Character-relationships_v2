@@ -10,19 +10,12 @@
  */
 import '@faker-js/faker';
 
-export type TupleOfLength<
-  TItem,
-  TLength extends number,
-  TAccumulator extends TItem[] = [],
-> = TAccumulator['length'] extends TLength
-  ? TAccumulator
-  : TupleOfLength<TItem, TLength, [...TAccumulator, TItem]>;
-
 declare module '@faker-js/faker' {
   interface HelpersModule {
     arrayElements<const TItem, TLength extends number>(
       array: readonly TItem[],
       count: TLength,
-    ): TupleOfLength<TItem, TLength>;
+      // eslint-disable-next-line @typescript-eslint/consistent-type-imports -- to global working I need inline import, when I separate TupleOfLength
+    ): import('./tuple.ts').TupleOfLength<TItem, TLength>;
   }
 }

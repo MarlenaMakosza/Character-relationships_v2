@@ -4,10 +4,10 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import { readFileSync } from 'node:fs';
 import postgres from 'postgres';
 
-import type { TupleOfLength } from '../faker-augmentation.d.ts';
+import type { TupleOfLength } from '../utils/tuple.ts';
 
 import { characters, relations } from '../../src/lib/server/db/schema/schema.ts';
-import { assertNumberEquals } from '../assertions.ts';
+import { assertNumberEquals } from '../utils/assertions.ts';
 
 const env = parse(readFileSync('.env'));
 if (!('DATABASE_URL' in env)) throw new Error('DATABASE_URL not found in .env!');
