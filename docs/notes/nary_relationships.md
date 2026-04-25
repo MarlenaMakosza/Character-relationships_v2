@@ -1,29 +1,19 @@
-# N-ary Relationships — architectural decision notes
+# N-ary relationships — decision
 
-## Decision: no n-ary table in base schema
+**No n-ary table in base schema.**
 
-Binary edges (source→target) are the atomic unit. "Triangle", "quadrilateral" etc.
-are **graph patterns**, not stored entities — detectable via cycle algorithms at runtime.
+Triangle/quadrilateral = graph pattern, detect via cycle algorithm at runtime.
 
-## When n-ary storage makes sense (future consideration)
+## If needed in future
 
-Only if the group is an **independent annotation** with its own metadata, NOT derivable
-from binary edges. Example: manually tagging "these 3 characters form a romantic triangle
-starting in chapter 5."
+Only if group needs own metadata (e.g. "romantic triangle, started chapter 5").
 
-## Proposed schema if needed (NOT YET IMPLEMENTED)
-
+Schema:
 ```sql
 character_groups (id, type, description)
--- type: 'triangle' | 'alliance' | 'rivalry' | ...
-
-character_group_members (group_id, character_id)
--- junction table, no hardcoded character_a/b/c_id columns
+character_group_members (group_id, character_id)  -- junction, any group size
 ```
 
-Open/Closed: junction table handles triangles, quadrilaterals, groups of any size.
+## Open question
 
-## Open question (unresolved)
-
-Is the group **derived** (all binary edges must exist) or **independent** (manual annotation,
-no FK to relations table)? This determines whether consistency enforcement is needed.
+Derived (binary edges must exist) or independent annotation (no FK to relations)?
