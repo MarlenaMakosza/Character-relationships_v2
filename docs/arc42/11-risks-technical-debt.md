@@ -16,7 +16,7 @@ Any code referencing old column names will break.
 ### Directed duplicates unprotected
 Two identical directed relations (`A→B "loves"` twice) are not prevented.
 Only undirected duplicates are blocked by the partial unique index.
-See ADR-003.
+See [ADR-003](../decisions/003-relation-schema-rules.md).
 
 ---
 
