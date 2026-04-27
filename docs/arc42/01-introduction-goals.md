@@ -38,6 +38,16 @@ Lets users build visual graphs of character connections and track rich character
 - Custom attributes and tags on characters
 - Single-user MVP; multi-user post-MVP
 
+## Future Feature Ideas
+
+- **Auto-typography in writing editor:** when a prose/novel writing area is added,
+  automatically apply correct punctuation per writing style (Polish/English) —
+  em dash in dialogue, en dash as sentence dash, style-correct quotation marks.
+
+**Full backlog:** [backlog.md](backlog.md)
+
+---
+
 **Full attribute spec:** [appendix/character-attributes-extended.md](appendix/character-attributes-extended.md)
 **Relationship type catalogue:** [appendix/relationship-types.md](appendix/relationship-types.md)
 **Event type catalogue:** [appendix/event-types.md](appendix/event-types.md)
