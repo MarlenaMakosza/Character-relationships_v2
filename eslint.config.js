@@ -60,7 +60,7 @@ const vitestFlag = true; // Checked (almost, I check it when I write tests, I pr
 // const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default [
-  { ignores: ['node_modules/**'] },
+  { ignores: ['node_modules/**', '.archgate/**'] },
   prettier,
   {
     name: 'Main ruleset',
