@@ -1,34 +1,33 @@
-import type { Character } from '$lib/domain/Character';
-import type { Uuid } from '$lib/domain/types';
+// import type { Character } from '$lib/domain/Character';
+// import type { Uuid } from '$lib/domain/types';
 
-import { Characters } from '$lib/domain/Characters';
-import { toCharacter } from '$lib/mappers/characterMapper';
+import type { DBCharacter } from '$lib/dbModels/Character.ts';
+
 import db from '$lib/server/db';
 import { characters } from '$lib/server/db/schema/schema';
-import { eq } from 'drizzle-orm';
 
+// import { eq } from 'drizzle-orm';
+
+//*
 class CharacterRepository {
-  public static async getListCharacters(): Promise<Character[]> {
-    const records = await db.select().from(characters).orderBy(characters.id);
-
-    return records.map(toCharacter);
+  public static async getCharacters(): Promise<DBCharacter[]> {
+    return db.select().from(characters).orderBy(characters.id);
   }
 
-  // TODO Where different?
-
-  public static async getCharacters(): Promise<Characters> {
-    const records = await db.select().from(characters).orderBy(characters.id);
-
-    return new Characters(records.map(toCharacter));
-  }
-
-  public static async getCharacterById(id: Uuid): Promise<Character | null> {
-    const record = await db.query.characters.findFirst({
-      where: eq(characters.id, id),
-    });
-
-    return (record == null) ? null : toCharacter(record);
-  }
+  // public static async getCharacters(): Promise<Characters> {
+  //   const dbCharacters: DBCharacter[] = await db.select().from(characters).orderBy(characters.id);
+  //   const allCharacters: Character[] = dbCharacters.map(toCharacter);
+  //
+  //   return new Characters(allCharacters);
+  // }
+  //
+  // public static async getCharacterById(id: Uuid): Promise<Character | null> {
+  //   const record = await db.query.characters.findFirst({
+  //     where: eq(characters.id, id),
+  //   });
+  //
+  //   return (record == null) ? null : toCharacter(record);
+  // }
 
   // // TODO - take framework to responses status codes or finally
   // public static async deleteCharacterById(id: number): Promise<Response> {
