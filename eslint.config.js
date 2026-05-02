@@ -28,7 +28,7 @@ import unicorn from 'eslint-plugin-unicorn';
 import svelteParser from 'svelte-eslint-parser';
 
 // IMPORTANT! If you want see what rules is in use, just run in terminal: npx @eslint/config-inspector
-// For most plugins you can check their human-docs via this tool
+// For most plugins you can check their human_docs via this tool
 
 // Toggles for enabling/disabling rule groups
 const aliasFlag = true; // Checked
@@ -60,7 +60,7 @@ const vitestFlag = true; // Checked (almost, I check it when I write tests, I pr
 // const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default [
-  { ignores: ['node_modules/**', '.archgate/**'] },
+  { ignores: ['node_modules/**', '.archgate/**', 'human_docs/**', 'internal_docs/**', 'pub_docs/**'], },
   prettier,
   {
     name: 'Main ruleset',
@@ -78,7 +78,8 @@ export default [
       'src/routes/sandbox/**',
       'src/routes/debug/**',
       'tsconfig.json',
-      'human-docs/**',
+      'human_docs/**',
+      'docs/**'
     ],
     languageOptions: {
       parser: svelteParser,
@@ -1050,7 +1051,7 @@ export default [
       'eslint.config.js',
       'commitlint.config.js',
       'drizzle.config.ts',
-      'human-docs/**',
+      'human_docs/**',
     ],
     languageOptions: {
       parser: tsParser,
@@ -1227,7 +1228,7 @@ export default [
   {
     name: 'HTML',
     files: ['**/*.html'],
-    ignores: ['.svelte-kit/**', '**/fixtures', 'node_modules', 'build', 'human-docs/**'],
+    ignores: ['.svelte-kit/**', '**/fixtures', 'node_modules', 'build', 'human_docs/**'],
     languageOptions: {
       parser: htmlParser,
     },
@@ -1261,7 +1262,7 @@ export default [
   {
     name: 'JSON',
     files: ['**/*.json'],
-    ignores: ['package-lock.json', 'human-docs/**'],
+    ignores: ['package-lock.json', 'human_docs/**'],
     language: 'json/json',
     plugins: {
       json: json,

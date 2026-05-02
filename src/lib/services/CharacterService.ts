@@ -4,10 +4,11 @@ import { Characters } from '$lib/domain/Characters.ts';
 import { toCharacter } from '$lib/mappers/characterMapper.ts';
 import CharacterRepository from '$lib/repositories/CharacterRepository.ts';
 
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars -- test
-class CharacterService {
-  /**
+/** @internal
+ * Character service
+ */
+export class CharacterService {
+  /** @internal
    * Fetches all characters from the database.
    * @returns Promise resolving to a Characters collection
    */

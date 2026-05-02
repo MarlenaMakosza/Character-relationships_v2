@@ -1,0 +1,6 @@
+{
+  "entryPointStrategy": "Expand",
+  "entryPoints": ["src"],
+  "excludeInternal": true,
+  "out": "pub_docs"
+}

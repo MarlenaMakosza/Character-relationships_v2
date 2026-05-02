@@ -6,6 +6,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "validate": "npm run lint && npm run check && npm run ts-check && npm run test",
+    "docs": "typedoc --options typedoc.public.json && typedoc --options typedoc.internal.json",
     "db:start": "docker compose up",
     "db:sync": "npm run db:generate && npm run db:migrate",
     "db:studio": "drizzle-kit studio",
