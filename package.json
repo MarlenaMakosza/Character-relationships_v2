@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "validate": "npm run lint && npm run check && npm run ts-check && npm run test",
+    "validate": "npm run lint && npm run check && npm run ts-check && npm run test && npm run check:adrs",
     "docs:api": "typedoc --options typedoc.public.json && typedoc --options typedoc.internal.json",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
