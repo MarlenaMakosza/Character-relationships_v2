@@ -5,6 +5,17 @@ See [01-introduction-goals.md](01-introduction-goals.md) for project goals conte
 
 ---
 
+## ADR revision reminders in PR flow
+
+ADR-008 is marked `superseded_by: ~` (open for revision). Need a mechanism that surfaces
+such ADRs automatically in every PR — not relying on manual backlog review.
+
+Options to investigate:
+- Archgate rule (check if `ctx.scopedFiles` can cover all files, not just PR-changed ones)
+- GitHub Actions workflow that comments on every PR with a list of ADRs pending revision
+
+---
+
 ## Research: BFS and DFS algorithms
 
 Graph traversal algorithms — relevant for future relationship path-finding features.
