@@ -28,3 +28,7 @@ vite.config.ts.timestamp-*
 
 # API docs — generated locally or by CI
 /docs/api_docs/
+
+# Vitepress
+.vitepress/dist
+.vitepress/cache
