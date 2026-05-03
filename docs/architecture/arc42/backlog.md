@@ -5,6 +5,12 @@ See [01-introduction-goals.md](01-introduction-goals.md) for project goals conte
 
 ---
 
+## Research: BFS and DFS algorithms
+
+Graph traversal algorithms — relevant for future relationship path-finding features.
+
+---
+
 ## Auto-typography in writing editor
 
 **Context:** If a prose/novel writing area is added, raw keyboard input produces
