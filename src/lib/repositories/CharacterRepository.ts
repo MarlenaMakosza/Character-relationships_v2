@@ -8,7 +8,7 @@ import { characters } from '$lib/server/db/schema/schema';
 
 // import { eq } from 'drizzle-orm';
 
-//*
+/** @internal */
 class CharacterRepository {
   public static async getCharacters(): Promise<DBCharacter[]> {
     return db.select().from(characters).orderBy(characters.id);

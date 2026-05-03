@@ -76,6 +76,12 @@ npm run docs:api
 
 Output: `docs/api_docs/public` (public API) and `docs/api_docs/internal` (full, including internals).
 
+To preview after generation:
+
+```bash
+npx http-server docs/api_docs/public
+```
+
 ## About app
 
 Small project drawing relationships between characters.

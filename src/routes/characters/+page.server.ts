@@ -1,22 +1,17 @@
-// import type { Characters } from '$lib/domain/Characters';
+import { CharacterController } from '$lib/Controller/CharacterController';
+import { error } from '@sveltejs/kit';
 
-// import { EMPTY } from '$lib/constants';
-// import { CharacterFormatter } from '$lib/formatters/CharacterFormatter';
-// import CharacterRepository from '$lib/repositories/CharacterRepository';
-// import { error } from '@sveltejs/kit';
-// import { StatusCodes } from 'http-status-codes';
+import type { PageServerLoad } from './$types';
 
-// import type { PageServerLoad } from './$types';
+export const load: PageServerLoad = async () => {
+  const result = await CharacterController.getCharacters();
 
-// export const load: PageServerLoad = async () => {
-//   const characters: Characters = await CharacterRepository.getCharacters();
-//   if (characters.charactersArray.length == EMPTY) {
-//     throw error(StatusCodes.NOT_FOUND, { message: 'Characters not found' });
-//   }
+  if (result.data === null) {
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers -- temp
+    error(500, result.error);
+  }
 
-//   const serializedCharacters = CharacterFormatter.toPOJOs(characters.charactersArray);
-
-//   return {
-//     characters: serializedCharacters,
-//   };
-// };
+  return {
+    characters: result.data.charactersArray.map(({ id, name }) => ({ id, name })),
+  };
+};

@@ -2,7 +2,6 @@
   import { page } from '$app/state';
   import '$lib/scripts/app.css';
   const NOT_FOUND = 404;
-  // TODO: I don't like it. Should I just disable this rule for this?
 </script>
 
 {#if String(page.status) === String(NOT_FOUND)}
