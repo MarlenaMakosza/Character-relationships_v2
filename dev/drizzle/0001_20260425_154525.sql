@@ -1,0 +1,1 @@
+ALTER TABLE "characters" ALTER COLUMN "name" SET NOT NULL;

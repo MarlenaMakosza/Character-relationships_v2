@@ -10,10 +10,11 @@ import ts from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import vitest from '@vitest/eslint-plugin';
 import prettier from 'eslint-config-prettier';
+import eslintComments from 'eslint-plugin-eslint-comments';
 import drizzle from 'eslint-plugin-drizzle';
 import esEs from 'eslint-plugin-eslint-plugin';
 import functional from 'eslint-plugin-functional';
-import esImport from 'eslint-plugin-import';
+import esImport from 'eslint-plugin-import-x';
 import alias from 'eslint-plugin-import-alias';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -23,16 +24,17 @@ import sonarjs from 'eslint-plugin-sonarjs';
 import svelte from 'eslint-plugin-svelte';
 import tsDoc from 'eslint-plugin-tsdoc';
 import unicorn from 'eslint-plugin-unicorn';
-import { fileURLToPath } from 'node:url';
+// import { fileURLToPath } from 'node:url';
 import svelteParser from 'svelte-eslint-parser';
 
 // IMPORTANT! If you want see what rules is in use, just run in terminal: npx @eslint/config-inspector
-// For most plugins you can check their docs via this tool
+// For most plugins you can check their human_docs via this tool
 
 // Toggles for enabling/disabling rule groups
 const aliasFlag = true; // Checked
 const cspellFlag = true; // Checked
 const drizzleFlag = true; // Checked
+const eslintCommentsFlag = true; // Checked
 const esEsFlag = true; // Checked
 const esImportFlag = true; // Checked
 // Recommend when you only use functional programming, or you have separate space for functional code in project
@@ -55,9 +57,10 @@ const typescriptFlag = true; // Checked
 const unicornFlag = true; // Checked
 const vitestFlag = true; // Checked (almost, I check it when I write tests, I promise)
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
+// const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default [
+  { ignores: ['node_modules/**', '.archgate/**', 'docs/**', '.vitepress/**'], },
   prettier,
   {
     name: 'Main ruleset',
@@ -75,7 +78,7 @@ export default [
       'src/routes/sandbox/**',
       'src/routes/debug/**',
       'tsconfig.json',
-      'docs/**',
+      'docs/**'
     ],
     languageOptions: {
       parser: svelteParser,
@@ -98,7 +101,8 @@ export default [
       sonarjs: sonarjs,
       promise: promise,
       drizzle: drizzle,
-      import: esImport,
+      'eslint-comments': eslintComments,
+      'import-x': esImport,
       security: security,
       alias: alias,
       node: node,
@@ -106,7 +110,7 @@ export default [
       vitest: vitest,
     },
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: {
           alwaysTryTypes: true,
         },
@@ -246,6 +250,12 @@ export default [
         'promise/spec-only': 'error',
       }),
 
+      /* eslint-comments rules */
+      ...(eslintCommentsFlag && {
+        'eslint-comments/require-description': 'error',
+        'eslint-comments/no-unused-disable': 'error',
+      }),
+
       /* drizzle rules */
       ...(drizzleFlag && {
         'drizzle/enforce-delete-with-where': 'error',
@@ -339,21 +349,24 @@ export default [
 
       /* import rules */
       ...(esImportFlag && {
-        'import/named': 'error',
-        'import/default': 'error',
-        'import/no-named-as-default': 'error',
-        'import/no-anonymous-default-export': 'error',
-        'import/no-duplicates': 'error',
-        'import/no-absolute-path': 'error',
-        'import/no-useless-path-segments': ['error', { noUselessIndex: true }],
+        // These rules parse the source of imported modules; import-x uses the
+        // importing file's parser (svelte-eslint-parser for .svelte) which
+        // cannot parse .mjs from node_modules. TS already validates all three.
+        'import-x/named': 'off',
+        'import-x/default': 'off',
+        'import-x/no-named-as-default': 'off',
+        'import-x/no-anonymous-default-export': 'error',
+        'import-x/no-duplicates': 'error',
+        'import-x/no-absolute-path': 'error',
+        'import-x/no-useless-path-segments': ['error', { noUselessIndex: true }],
 
         // Useless
-        'import/extensions': 'off',
-        'import/no-restricted-paths': 'off',
-        'import/order': 'off',
-        'import/no-mutable-exports': 'off',
-        'import/no-unresolved': 'off', //"If you're using a module bundler other than Node or Webpack, you may end up with a lot of false positive reports of missing dependencies."
-        'import/no-extraneous-dependencies': 'off',
+        'import-x/extensions': 'off',
+        'import-x/no-restricted-paths': 'off',
+        'import-x/order': 'off',
+        'import-x/no-mutable-exports': 'off',
+        'import-x/no-unresolved': 'off',
+        'import-x/no-extraneous-dependencies': 'off',
       }),
       /* functional rules */
       ...(functionalFlag && {
@@ -626,6 +639,7 @@ export default [
         'perfectionist/sort-objects': 'off',
         'perfectionist/sort-classes': 'off',
         'perfectionist/sort-object-types': 'off',
+        'perfectionist/sort-modules': 'off',
       }),
 
       /* Unicorn rules */
@@ -652,6 +666,7 @@ export default [
         'unicorn/error-message': 'error',
         // Disabled: `null` is standard in databases, APIs, and explicit absence of value is clearer than `undefined`.
         'unicorn/no-null': 'off',
+        'unicorn/no-array-callback-reference': 'off',
       }),
 
       ...(stylisticFlag && {
@@ -1035,7 +1050,7 @@ export default [
       'eslint.config.js',
       'commitlint.config.js',
       'drizzle.config.ts',
-      'docs/**',
+      'human_docs/**',
     ],
     languageOptions: {
       parser: tsParser,
@@ -1043,6 +1058,22 @@ export default [
         project: './tsconfig.json',
         tsconfigRootDir: import.meta.dirname,
       },
+    },
+  },
+  {
+    name: 'Dev scripts',
+    files: ['dev/**/*.ts'],
+    rules: {
+      // Scripts run once in CLI context — sync I/O is fine, no event loop to block
+      'node/no-sync': 'off',
+      // Path is developer-controlled, not user input — no injection risk
+      'security/detect-non-literal-fs-filename': 'off',
+      // Dev scripts import from src directly — $lib alias not resolvable outside bundler
+      'alias/import-alias': 'off',
+      // Seed intentionally deletes all rows — that's the point
+      'drizzle/enforce-delete-with-where': 'off',
+      // onnotice callback must be empty to suppress PG notices
+      '@typescript-eslint/no-empty-function': 'off',
     },
   },
   {
@@ -1103,7 +1134,7 @@ export default [
             fixable: false,
           },
         ],
-        'vitest/no-hooks': 'error',
+        'vitest/no-hooks': 'off',
         'vitest/no-identical-title': 'error',
         'vitest/no-import-node-test': 'error',
         'vitest/no-interpolation-in-snapshots': 'error',
@@ -1196,7 +1227,7 @@ export default [
   {
     name: 'HTML',
     files: ['**/*.html'],
-    ignores: ['.svelte-kit/**', '**/fixtures', 'node_modules', 'build', 'docs/**'],
+    ignores: ['.svelte-kit/**', '**/fixtures', 'node_modules', 'build', 'human_docs/**'],
     languageOptions: {
       parser: htmlParser,
     },
@@ -1230,7 +1261,7 @@ export default [
   {
     name: 'JSON',
     files: ['**/*.json'],
-    ignores: ['package-lock.json', 'docs/**'],
+    ignores: ['package-lock.json', 'human_docs/**'],
     language: 'json/json',
     plugins: {
       json: json,

@@ -1,5 +1,8 @@
 import type { Character } from '$lib/domain/Character';
 
+/**
+ * Ordered collection of {@link Character} instances.
+ */
 export class Characters {
   public constructor(public charactersArray: readonly Character[]) {}
 

@@ -1,4 +1,4 @@
-// eslint-disable-next-line sonarjs/no-wildcard-import
+// eslint-disable-next-line sonarjs/no-wildcard-import -- Because I'm lazy
 import * as schema from '$lib/server/db/schema/schema';
 import env from '@src/env';
 import { drizzle } from 'drizzle-orm/postgres-js';
@@ -9,7 +9,7 @@ const CONNECTION_LIMIT = 1;
 export const connection = postgres(env.DATABASE_URL, {
   max: env.DB_MIGRATING || env.DB_SEEDING ? CONNECTION_LIMIT : undefined,
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function -- BecauseI'm lazy and it is
   onnotice: env.DB_SEEDING ? () => {} : undefined,
 });
 

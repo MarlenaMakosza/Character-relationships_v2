@@ -1,0 +1,6 @@
+{
+  "entryPointStrategy": "Expand",
+  "entryPoints": ["src"],
+  "excludeInternal": true,
+  "out": "docs/api_docs/public"
+}

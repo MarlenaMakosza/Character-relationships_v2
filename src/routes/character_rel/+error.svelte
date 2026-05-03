@@ -1,10 +1,9 @@
 <script lang="ts">
   import { page } from '$app/state';
   import '$lib/scripts/app.css';
-  import { StatusCodes } from 'http-status-codes';
-  // TODO: I don't like it
   const pageStatus = String(page.status);
-  const notFoundStatus = String(StatusCodes.NOT_FOUND);
+  const NOT_FOUND = 404;
+  const notFoundStatus = String(NOT_FOUND);
 </script>
 
 {#if pageStatus === notFoundStatus}

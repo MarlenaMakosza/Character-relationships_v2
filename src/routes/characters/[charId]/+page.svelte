@@ -10,5 +10,4 @@
 </script>
 
 <h1>Test character: {characterId}</h1>
-<h2>Character: {character.firstName} {character.lastName}</h2>
-<p>Age: {character.age}</p>
+<h2>Character: {character.name}</h2>
