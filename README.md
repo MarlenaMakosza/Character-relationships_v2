@@ -50,6 +50,18 @@ When you use Linux and IDE like Code or WebStorm - like above - run script from 
 
 .env - use .env.example - and change or leave default login credentials.
 
+## Documentation
+
+All documentation lives in the `docs/` folder — architecture (arc42), decision records (ADRs), and diagrams.
+
+API reference is generated — not committed. To generate it locally:
+
+```bash
+npm run docs
+```
+
+Output: `docs/api_docs/public` (public API) and `docs/api_docs/internal` (full, including internals).
+
 ## About app
 
 Small project drawing relationships between characters.
