@@ -10,7 +10,7 @@ hero:
       text: Architecture
       link: /architecture/arc42/01-introduction-goals
     - theme: alt
-      text: Decisions (ADR)
+      text: 1_Decisions_ADR.md
       link: /architecture/decisions/001-cytoscape-for-graph-visualization
 
 features:

@@ -15,7 +15,8 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'arc42',
+        text: 'Arc42',
+        link: '/architecture/arc42/1_arc42',
         items: [
           { text: '01 Introduction & Goals', link: '/architecture/arc42/01-introduction-goals' },
           { text: '02 Constraints', link: '/architecture/arc42/02-constraints' },
@@ -40,6 +41,7 @@ export default defineConfig({
       },
       {
         text: 'Decisions (ADR)',
+        link: '/architecture/decisions/1_Decisions_ADR',
         items: [
           { text: 'ADR-001 Cytoscape', link: '/architecture/decisions/001-cytoscape-for-graph-visualization' },
           { text: 'ADR-002 Binary Edges', link: '/architecture/decisions/002-binary-edges-as-relation-unit' },
