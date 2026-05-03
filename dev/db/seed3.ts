@@ -6,7 +6,7 @@
 //
 // import type { Character } from "../../src/lib/domain/Character.ts";
 //
-// import { toCharacter } from "../../src/lib/mappers/characterMapper.ts";
+// import { toCharacter } from "../../src/lib/mappers/CharacterMapper.ts";
 // import { characters, relations } from "../../src/lib/server/db/schema/schema.ts";
 //
 // // eslint-disable-next-line @typescript-eslint/promise-function-async -- lazy

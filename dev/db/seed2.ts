@@ -8,7 +8,7 @@
 // // @ts-expect-error
 // import type { CharacterPair } from "../../src/lib/domain/Character.ts";
 //
-// import { toCharacter } from "../../src/lib/mappers/characterMapper.ts";
+// import { toCharacter } from "../../src/lib/mappers/CharacterMapper.ts";
 // import { characters, relations } from "../../src/lib/server/db/schema/schema.ts";
 //
 // const env = parse(readFileSync(".env"));

@@ -1,8 +1,9 @@
 import type { DBCharacter } from '$lib/dbModels/Character.ts';
 
 import { Characters } from '$lib/domain/Characters.ts';
-import { toCharacter } from '$lib/mappers/characterMapper.ts';
 import CharacterRepository from '$lib/repositories/CharacterRepository.ts';
+
+import { toCharacter } from '../mappers/CharacterMapper.ts';
 
 /** @internal
  * Character service

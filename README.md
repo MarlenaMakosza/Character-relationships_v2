@@ -54,10 +54,24 @@ When you use Linux and IDE like Code or WebStorm - like above - run script from 
 
 All documentation lives in the `docs/` folder — architecture (arc42), decision records (ADRs), and diagrams.
 
-API reference is generated — not committed. To generate it locally:
+### Architecture docs (VitePress)
+
+Human-written docs rendered as a navigable site:
 
 ```bash
-npm run docs
+npm run docs:dev       # dev server with hot reload
+npm run docs:build     # build static site
+npm run docs:preview   # preview the build
+```
+
+### API reference (TypeDoc)
+
+Generated from source — not committed to the repository. Deployed automatically to GitHub Pages on push to `main`.
+
+To generate locally:
+
+```bash
+npm run docs:api
 ```
 
 Output: `docs/api_docs/public` (public API) and `docs/api_docs/internal` (full, including internals).
