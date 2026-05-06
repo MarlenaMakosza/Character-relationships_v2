@@ -15,6 +15,9 @@ describe('given a running PostgreSQL container', () => {
     await sql.end();
   });
 
+  // todo: check how to write nice tests in vitest
+  // todo: test behavior of DB when type name like '01_John_Smith'
+  // todo: performance test vitest bench
   it('when querying SELECT 1+1 then returns 2', async () => {
     expect.assertions(1);
     const [row] = await sql<[{ result: number }]>`SELECT 1+1 AS result`;
