@@ -1,7 +1,6 @@
 ---
 status: accepted
 date: 2026-05-03
-superseded_by: ~
 ---
 
 # ADR-008: GitHub Actions for API Docs CI

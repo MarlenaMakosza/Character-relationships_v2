@@ -18,9 +18,25 @@ Lets users build visual graphs of character connections and track rich character
 
 ## Inspiration
 
+### MVP
 - [Tintero](https://tintero.app) — template-based character sheets
 - [vvd.world](https://vvd.world) — visual world-building tool
 - Gramps — genealogy app, validation philosophy (see appendix)
+
+### After MVP (dreams)
+- [GoNorth](https://github.com/steffendx/GoNorth) - Chapter and Quest Planning, NPC daily routine (in JS)
+- [Drafft](https://drafft.dev/#pricing) - dialogue tree (RTC method), story variables, scenariuos, simulator,
+
+### To research (I know only names - check what this apps can)
+- https://mhgolkar.github.io/Arrow/
+- https://twinery.org
+- https://github.com/goflowspace/goflow
+- https://github.com/monologue-tool/monologue
+- https://github.com/inkle/ink
+- https://github.com/dialogic-godot/dialogic
+- https://github.com/fognil/TaleNode
+- https://github.com/digiwombat/TalkerMakerDeluxe
+- https://www.articy.com/en/articydraft/free/ (sic! price'ing)
 
 ## Top Quality Goals
 
