@@ -20,6 +20,7 @@ Lets users build visual graphs of character connections and track rich character
 
 ### MVP
 - [writero.app](https://writeo.app) - Organize Your Novel, Characters, and Story in One Place (my mission is open source in that case...)
+- [Ellipsus](https://ellipsus.com)
 - [ForgeTales](https://www.forgetalesstudio.com) - From complex characters and lore-rich wikis to plots and custom calendars
 - [Tintero](https://tintero.app) — template-based character sheets
 - [vvd.world](https://vvd.world) — visual world-building tool
