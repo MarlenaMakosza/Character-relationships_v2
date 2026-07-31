@@ -1,3 +1,5 @@
+![Character Relationships banner](static/banner_compres.png)
+
 # Character_relationships
 
 ## How to run
